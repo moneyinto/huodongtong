@@ -33,14 +33,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="welcome.erb" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="welcome.erb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/users/welcome.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5008696" vertical-offset="0" max-vertical-offset="666">
+            <state vertical-scroll-proportion="-10.666667" vertical-offset="0" max-vertical-offset="666">
               <caret line="16" column="43" selection-start-line="16" selection-start-column="43" selection-end-line="16" selection-end-column="43" />
               <folding>
                 <element signature="n#style#0;n#td#0;n#tr#1;n#table#0;n#div#0;n#!!top" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="_header.erb" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/views/shared/_header.erb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.09608541" vertical-offset="0" max-vertical-offset="562">
+              <caret line="3" column="93" selection-start-line="3" selection-start-column="93" selection-end-line="3" selection-end-column="93" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -50,16 +60,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0" vertical-offset="414" max-vertical-offset="522">
               <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="bootstrap.css" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/bootstrap.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="89858" max-vertical-offset="112194">
-              <caret line="5003" column="0" selection-start-line="5003" selection-start-column="0" selection-end-line="5003" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -152,7 +152,6 @@
         <option value="$PROJECT_DIR$/app/assets/stylesheets/bootstrap.min.css" />
         <option value="$PROJECT_DIR$/app/views/users/login.erb" />
         <option value="$PROJECT_DIR$/app/views/users/signup.erb" />
-        <option value="$PROJECT_DIR$/app/views/shared/_header.erb" />
         <option value="dbtable:/51f19673/b03966ed-0d55-49b3-97bc-d5846e47b05d/..users" />
         <option value="dbtable:/51f19673/b03966ed-0d55-49b3-97bc-d5846e47b05d/..sqlite_sequence" />
         <option value="$PROJECT_DIR$/app/controllers/users_controller.rb" />
@@ -163,6 +162,7 @@
         <option value="$PROJECT_DIR$/config/environments/production.rb" />
         <option value="$PROJECT_DIR$/Gemfile" />
         <option value="$PROJECT_DIR$/app/views/users/welcome.erb" />
+        <option value="$PROJECT_DIR$/app/views/shared/_header.erb" />
       </list>
     </option>
   </component>
@@ -930,13 +930,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/shared/_header.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="54" max-vertical-offset="234">
-          <caret line="3" column="60" selection-start-line="3" selection-start-column="36" selection-end-line="3" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/bootstrap.css">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="89858" max-vertical-offset="112194">
@@ -1019,11 +1012,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/users/welcome.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5008696" vertical-offset="0" max-vertical-offset="666">
+        <state vertical-scroll-proportion="-10.666667" vertical-offset="0" max-vertical-offset="666">
           <caret line="16" column="43" selection-start-line="16" selection-start-column="43" selection-end-line="16" selection-end-column="43" />
           <folding>
             <element signature="n#style#0;n#td#0;n#tr#1;n#table#0;n#div#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/shared/_header.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.09608541" vertical-offset="0" max-vertical-offset="562">
+          <caret line="3" column="93" selection-start-line="3" selection-start-column="93" selection-end-line="3" selection-end-column="93" />
+          <folding />
         </state>
       </provider>
     </entry>

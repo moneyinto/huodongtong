@@ -1,7 +1,7 @@
 <header class="navbar navbar-default container-fluid">
   <h1>活动通</h1>
   <% if current_user %>
-      <li class = "header-right">你好，<%= current_user.name %>！  <%= link_to "退出", logout_path, method: "delete" %></li>
+      <li class = "header-right">你好，<%= link_to_unless_current current_user.name,welcome_path %>！  <%= link_to "退出", logout_path, method: "delete" %></li>
   <% end %>
 </header>
 
