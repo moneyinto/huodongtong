@@ -10,10 +10,11 @@
           <td style="width: 350px">用户名</td>
           <td>操作</td>
         </tr>
+        <% id = 0 %>
         <% @user.each do |p| %>
             <% if p.name != "admin" %>
                 <tr>
-                  <td style="width: 350px"><%= p.id %></td>
+                  <td style="width: 350px"><%= id =id+1 %></td>
                   <td style="width: 350px"><%= p.name %></td>
                   <td>
                     <%= link_to "删除" %>&nbsp&nbsp&nbsp&nbsp<%= link_to "修改密码" %>
