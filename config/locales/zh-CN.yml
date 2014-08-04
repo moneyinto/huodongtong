@@ -1,0 +1,29 @@
+zh-CN:
+  activerecord:
+    attributes:
+      user:
+        name: "帐号"
+        password: "密码"
+        password_confirmation: "请确认密码"
+        forget_issues: "忘记密码问题"
+        forget_answer: "忘记密码答案"
+    errors:
+      models:
+        user:
+          attributes:
+            name:
+              blank: "不能为空"
+              taken: "已存在"
+            password:
+              blank: "不能为空"
+            password_digest:
+              blank: "不能为空"
+            forget_issues:
+              blank: "不能为空"
+            forget_answer:
+              blank: "不能为空"
+            password_confirmation:
+              blank: "不能为空"
+              confirmation: "是否匹配"
+
+

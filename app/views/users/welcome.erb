@@ -1,0 +1,30 @@
+<% if current_user.name == "admin" %>
+    <div class="panel panel-default" style="width: 95%;margin-left: 35px">
+      <div class="panel-heading" style = "font-size: 25px">
+        用户管理
+        <button class="btn btn-default"><%= link_to "+添加用户" %></button>
+      </div>
+      <table class="table text-center">
+        <tr>
+          <td style="width: 350px">编号</td>
+          <td style="width: 350px">用户名</td>
+          <td>操作</td>
+        </tr>
+        <% @user.each do |p| %>
+            <% if p.name != "admin" %>
+                <tr>
+                  <td style="width: 350px"><%= p.id %></td>
+                  <td style="width: 350px"><%= p.name %></td>
+                  <td>
+                    <%= link_to "删除" %>&nbsp&nbsp&nbsp&nbsp<%= link_to "修改密码" %>
+                  </td>
+                </tr>
+            <% end %>
+        <% end %>
+      </table>
+    </div>
+    <div class="right-padding" align="right">
+      <%= will_paginate @user, :previous_label => '<<', :next_label =>  '>>' %>
+    </div>
+<% end %>
+

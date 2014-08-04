@@ -1,0 +1,36 @@
+<div class="panel panel-default panel-body text-center center-block width" style = "background-color: #eeeeee">
+  <%= form_for @user do |f| %>
+      <div class="center-block">
+        <h3 class="">新用户注册</h3>
+        <%= link_to "用户登录", login_path, :class => "right" %>
+        <div class="">
+          <dl class="input-group">
+            <dt class="input-group-addon"><%= f.label :name, :class => "input_width-1" %></dt>
+            <dd class=""><%= f.text_field :name, :class => "form-control" %></dd>
+          </dl>
+          <dl class="input-group">
+            <dt class="input-group-addon"> <%= f.label :password, :class => "input_width-1" %> </dt>
+            <dd class=""> <%= f.password_field :password, :class => "form-control" %> </dd>
+          </dl>
+          <dl class="input-group">
+            <dt class="input-group-addon"> <%= f.label :password_confirmation, :class => "input_width-1" %> </dt>
+            <dd class=""> <%= f.password_field :password_confirmation, :class => "form-control" %></dd>
+          </dl>
+          <dl class="input-group">
+            <dt class="input-group-addon"> <%= f.label :forget_issues %> </dt>
+            <dd class=""> <%= f.text_field :forget_issues, :class => "form-control" %> </dd>
+          </dl>
+          <dl class="input-group">
+            <dt class="input-group-addon"> <%= f.label :forget_answer %> </dt>
+            <dd class=""> <%= f.text_field :forget_answer, :class => "form-control" %> </dd>
+          </dl>
+          <% if @user.errors.any? %>
+              <div class = "alert alert-danger">
+                <%= @user.errors.full_messages.first %>
+              </div>
+          <% end %>
+          <p><%= f.submit "注册", :class => "btn-default btn btm-primary" %></p>
+        </div>
+      </div>
+  <% end %>
+</div>

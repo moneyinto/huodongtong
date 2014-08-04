@@ -1,0 +1,13 @@
+
+---
+users:
+  columns:
+  - id
+  - name
+  - password_digest
+  - forget_issues
+  - forget_answer
+  - token
+  - created_at
+  - updated_at
+  records: 

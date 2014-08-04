@@ -1,0 +1,33 @@
+<div class="panel panel-default panel-body text-center center-block width" style = "background-color: #eeeeee">
+  <div class="center-block" id="login">
+    <h3>登录</h3>
+    <%= link_to "用户注册",signup_path, :class => "right" %>
+    <div class="">
+      <%= form_tag "/create_login_session" do %>
+          <dl class="input-group">
+            <dt class="input-group-addon">
+              <%= label_tag "帐号" %>
+            </dt>
+            <dd class = "">
+              <%= text_field_tag :name, params[:name], :class => "form-control" %>
+            </dd>
+          </dl>
+          <dl class="input-group">
+            <dt class="input-group-addon">
+              <%= label_tag "密码" %>
+            </dt>
+            <dd class = "">
+              <%= password_field_tag :password, params[:password], :class => "form-control" %>
+            </dd>
+          </dl>
+          <%= link_to "忘记密码",signup_path, :class => "right" %>
+          <% if flash[:error] %>
+              <div class = "alert alert-danger">
+                <%= flash[:error] %>
+              </div>
+          <% end %>
+          <p> <%= submit_tag "登录", :class => "btn-default btn btm-primary" %> </p>
+      <% end %>
+    </div>
+  </div>
+</div>
