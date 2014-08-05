@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   get "/welcome" => "users#welcome", :as => "welcome"
 
-  get "/addUser" => "users#addUser", :as => "addUser"
+  get "/adduser" => "users#adduser", :as => "adduser"
 
   post "create_login_session" => "users#create_login_session"
 

@@ -36,4 +36,8 @@ class UsersController < ApplicationController
       redirect_to :login
     end
   end
+
+  def adduser
+    @user = User.new
+  end
 end
