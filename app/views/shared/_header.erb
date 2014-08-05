@@ -3,5 +3,11 @@
   <% if current_user %>
       <li class = "header-right">你好，<%= link_to_unless_current current_user.name,welcome_path %>！  <%= link_to "退出", logout_path, method: "delete" %></li>
   <% end %>
+  <% if current_user.name == "admin" %>
+      <ol class="breadcrumb">
+        <li><%= link_to_unless_current "首页",welcome_path %></li>
+        <li><%= link_to_unless_current "添加用户",addUser_path %></li>
+      </ol>
+  <% end %>
 </header>
 

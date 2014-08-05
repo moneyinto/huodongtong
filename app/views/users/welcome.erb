@@ -10,7 +10,11 @@
           <td style="width: 350px">用户名</td>
           <td>操作</td>
         </tr>
-        <% id = (params[:page].to_i-1)*10%>
+        <% if params[:page].to_i == 0 %>
+            <% id = 0 %>
+        <% else %>
+            <% id = (params[:page].to_i-1)*10%>
+        <% end %>
         <% @user.each do |p| %>
             <% if p.name != "admin" %>
                 <tr>

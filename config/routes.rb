@@ -5,6 +5,8 @@ Rails.application.routes.draw do
 
   get "/welcome" => "users#welcome", :as => "welcome"
 
+  get "/addUser" => "users#addUser", :as => "addUser"
+
   post "create_login_session" => "users#create_login_session"
 
   delete "logout" => "users#logout", :as => "logout"
