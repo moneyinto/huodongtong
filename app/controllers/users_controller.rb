@@ -1,7 +1,7 @@
 #encoding: utf-8
 class UsersController < ApplicationController
   def welcome
-    @user = User.paginate(page: params[:page],per_page:10)
+    @user = User.paginate(page: params[:page],per_page:10).offset(1)
   end
 
   def signup
