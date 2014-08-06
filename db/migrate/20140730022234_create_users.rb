@@ -6,6 +6,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :forget_issues
       t.string :forget_answer
       t.string :token
+      t.string :identity
 
       t.timestamps
     end

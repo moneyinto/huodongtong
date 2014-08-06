@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
 
-  attr_accessible :name, :password, :password_confirmation,:forget_issues,:forget_answer, :token
+  attr_accessible :name, :password, :password_confirmation,:forget_issues,:forget_answer,:identity,:token
   before_create { generate_token(:token) }
 
   validates :name, :presence => true

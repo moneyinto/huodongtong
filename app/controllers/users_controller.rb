@@ -12,6 +12,8 @@ class UsersController < ApplicationController
   end
 
   def create
+    params[:user][:identity] = "user"
+    p params[:user]
     @user = User.new(params[:user])
     if current_user
       if current_user.name == "admin"
