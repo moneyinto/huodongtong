@@ -48,3 +48,6 @@ gem 'will_paginate-bootstrap'
 
 gem 'yaml_db'
 gem 'therubyracer'
+gem 'will_paginate'
+gem 'bootstrap-will_paginate'
+

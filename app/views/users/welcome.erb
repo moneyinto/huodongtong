@@ -27,8 +27,7 @@
         <% end %>
       </table>
     </div>
-    <div class="right-padding" align="right">
-      <%= will_paginate @user, :previous_label => '<<', :next_label => '>>' %>
+    <div class="pagination" style="position: absolute;right: 30px; ">
+        <%= will_paginate@user ,{:previous_label =>'<<',:next_label => '>>'} %>
     </div>
 <% end %>
-<%= @d %>
