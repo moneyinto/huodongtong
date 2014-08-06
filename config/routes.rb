@@ -9,7 +9,11 @@ Rails.application.routes.draw do
 
   post "create_login_session" => "users#create_login_session"
 
+  delete "delete" => "users#delete", :as => "delete"
+
   delete "logout" => "users#logout", :as => "logout"
+
+
 
   resources :users, only: [:create]
 

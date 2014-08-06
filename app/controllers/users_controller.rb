@@ -53,4 +53,9 @@ class UsersController < ApplicationController
   def adduser
     @user = User.new
   end
+
+  def delete
+    User.find_by_name(params[:name]).delete
+    redirect_to :welcome
+  end
 end
