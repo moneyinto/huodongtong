@@ -7,7 +7,11 @@ Rails.application.routes.draw do
 
   get "/adduser" => "users#adduser", :as => "adduser"
 
+  get "/changepassword" => "users#changepassword", :as => "changepassword"
+
   post "create_login_session" => "users#create_login_session"
+
+  post "change_password" => "users#change_password"
 
   delete "delete_user" => "users#delete_user", :as => "delete_user"
 

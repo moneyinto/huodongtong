@@ -58,4 +58,8 @@ class UsersController < ApplicationController
     User.find_by_name(params[:delete_name]).delete
     redirect_to :welcome
   end
+
+  def changepassword
+    @user = User.new
+  end
 end
