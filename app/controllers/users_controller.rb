@@ -1,7 +1,8 @@
 #encoding: utf-8
 class UsersController < ApplicationController
   def welcome
-    @user = User.paginate(page: params[:page],per_page:10).offset(1)
+    user = User.where(:identity => "user")
+    @user = user.paginate(page: params[:page],per_page:10)
   end
 
   def signup
@@ -16,7 +17,7 @@ class UsersController < ApplicationController
     p params[:user]
     @user = User.new(params[:user])
     if current_user
-      if current_user.name == "admin"
+      if current_user.identity == "admin"
         if @user.save
           redirect_to  :adduser
         else
