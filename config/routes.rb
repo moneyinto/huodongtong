@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
   post "create_login_session" => "users#create_login_session"
 
-  delete "delete" => "users#delete", :as => "delete"
+  delete "delete_user" => "users#delete_user", :as => "delete_user"
 
   delete "logout" => "users#logout", :as => "logout"
 
