@@ -1,0 +1,22 @@
+.panel.panel-default.panel-body.text-center.center-block.width{:style => "background-color: #eeeeee"}
+  #login.center-block
+    %h3 登录
+    = link_to "用户注册",signup_path, :class => "right"
+    %div
+      = form_tag "/create_login_session" do
+        %dl.input-group
+          %dt.input-group-addon
+            = label_tag "帐号"
+          %dd
+            = text_field_tag :name, params[:name], :class => "form-control"
+        %dl.input-group
+          %dt.input-group-addon
+            = label_tag "密码"
+          %dd
+            = password_field_tag :password, params[:password], :class => "form-control"
+        = link_to "忘记密码",signup_path, :class => "right"
+        - if flash[:error]
+          .alert.alert-danger
+            = flash[:error]
+        %p
+          = submit_tag "登录", :class => "btn-default btn btm-primary"
