@@ -1,7 +1,7 @@
 #encoding: utf-8
 class UsersController < ApplicationController
   def welcome
-    session[:name] = "" 
+    session[:name] = ""
     user = User.where(:identity => "user")
     @user = user.paginate(page: params[:page],per_page:10)
   end
@@ -64,6 +64,9 @@ class UsersController < ApplicationController
   def change_password_session
     user = User.find_by_name(session[:name])
     if params[:password] == params[:password_confirmation] && params[:password] != ""
+      user.password = params[:password]
+      user.password_confirmation = params[:password_confirmation]
+      user.save
       redirect_to :welcome
     else
       flash[:error] = "密码输入不一致"
