@@ -14,7 +14,7 @@
             = label_tag "密码"
           %dd
             = password_field_tag :password, params[:password], :class => "form-control"
-        = link_to "忘记密码",signup_path, :class => "right"
+        = link_to "忘记密码",forgot_password_1_path, :class => "right"
         - if flash[:error]
           .alert.alert-danger
             = flash[:error]

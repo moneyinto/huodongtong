@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
   get "/password" => "users#password", :as => "password"
 
-  # post "password" => "users#change_password_session"
+  get "/forgot_password_1" => "users#forgot_password_1"
 
   post "create_login_session" => "users#create_login_session"
 
