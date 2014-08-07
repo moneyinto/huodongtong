@@ -1,9 +1,14 @@
 #encoding: utf-8
 class UsersController < ApplicationController
   def welcome
-    session[:name] = ""
-    user = User.where(:identity => "user")
-    @user = user.paginate(page: params[:page],per_page:10)
+    if current_user
+      session[:name] = ""
+      user = User.where(:identity => "user")
+      @user = user.paginate(page: params[:page],per_page:10)
+    else
+      redirect_to :login
+    end
+
   end
 
   def signup
@@ -67,7 +72,8 @@ class UsersController < ApplicationController
       user.password = params[:password]
       user.password_confirmation = params[:password_confirmation]
       user.save
-      redirect_to :welcome
+      flash[:notice] = "ok"
+      redirect_to :password
     else
       flash[:error] = "密码输入不一致"
       redirect_to :password

@@ -1,33 +1,36 @@
-<% if current_user.identity == "admin" %>
-    <div class="panel panel-default" style="width: 95%;margin-left: 35px">
-      <div class="panel-heading" style="font-size: 25px">
-        用户管理
-        <button class="btn btn-default"><%= link_to "+添加用户", adduser_path %></button>
-      </div>
-      <table class="table text-center">
-        <tr>
-          <td style="width: 350px">编号</td>
-          <td style="width: 350px">用户名</td>
-          <td>操作</td>
-        </tr>
-        <%= @a %>
-        <% if params[:page].to_i == 0 %>
-            <% id = 0 %>
-        <% else %>
-            <% id = (params[:page].to_i-1)*10 %>
-        <% end %>
-        <% @user.each do |p| %>
+<% if current_user %>
+    <% if current_user.identity == "admin" %>
+        <div class="panel panel-default" style="width: 95%;margin-left: 35px">
+          <div class="panel-heading" style="font-size: 25px">
+            用户管理
+            <button class="btn btn-default"><%= link_to "+添加用户", adduser_path %></button>
+          </div>
+          <table class="table text-center">
             <tr>
-              <td style="width: 350px"><%= id =id+1 %></td>
-              <td style="width: 350px"><%= p.name %></td>
-              <td>
-                <%= link_to "删除", delete_user_path(:delete_name => p[:name]),data: {confirm: "确定要删除"+p[:name]+"这个用户？"},method: "delete"%>&nbsp&nbsp&nbsp&nbsp<%= link_to "修改密码",password_path(:change_name => p[:name]) %>
-              </td>
+              <td style="width: 350px">编号</td>
+              <td style="width: 350px">用户名</td>
+              <td>操作</td>
             </tr>
-        <% end %>
-      </table>
-    </div>
-    <div class="pagination" style="position: absolute;right: 30px; ">
-        <%= will_paginate@user ,{:previous_label =>'<<',:next_label => '>>'} %>
-    </div>
+            <%= @a %>
+            <% if params[:page].to_i == 0 %>
+                <% id = 0 %>
+            <% else %>
+                <% id = (params[:page].to_i-1)*10 %>
+            <% end %>
+            <% @user.each do |p| %>
+                <tr>
+                  <td style="width: 350px"><%= id =id+1 %></td>
+                  <td style="width: 350px"><%= p.name %></td>
+                  <td>
+                    <%= link_to "删除", delete_user_path(:delete_name => p[:name]), data: {confirm: "确定要删除"+p[:name]+"这个用户？"}, method: "delete" %>
+                    &nbsp&nbsp&nbsp&nbsp<%= link_to "修改密码", password_path(:change_name => p[:name]) %>
+                  </td>
+                </tr>
+            <% end %>
+          </table>
+        </div>
+        <div class="pagination" style="position: absolute;right: 30px; ">
+          <%= will_paginate @user, {:previous_label => '<<', :next_label => '>>'} %>
+        </div>
+    <% end %>
 <% end %>
