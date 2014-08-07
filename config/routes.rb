@@ -11,6 +11,10 @@ Rails.application.routes.draw do
 
   get "/forgot_password_1" => "users#forgot_password_1"
 
+  get "/forgot_password_2" => "users#forgot_password_2"
+
+  post "forgot_password_1" => "users#forgot_password_1"
+
   post "create_login_session" => "users#create_login_session"
 
   post "change_password_session" => "users#change_password_session"
