@@ -1,6 +1,7 @@
 #encoding: utf-8
 class UsersController < ApplicationController
   def welcome
+    session[:name] = "" 
     user = User.where(:identity => "user")
     @user = user.paginate(page: params[:page],per_page:10)
   end
@@ -71,6 +72,8 @@ class UsersController < ApplicationController
   end
 
   def password
+    if session[:name] == ""
       session[:name] = params[:change_name]
+    end
   end
 end
