@@ -21,7 +21,7 @@
               <td style="width: 350px"><%= id =id+1 %></td>
               <td style="width: 350px"><%= p.name %></td>
               <td>
-                <%= link_to "删除", delete_user_path(:delete_name => p[:name]),data: {confirm: "确定要删除"+p[:name]+"这个用户？"},method: "delete"%>&nbsp&nbsp&nbsp&nbsp<%= link_to "修改密码",changepassword_path %>
+                <%= link_to "删除", delete_user_path(:delete_name => p[:name]),data: {confirm: "确定要删除"+p[:name]+"这个用户？"},method: "delete"%>&nbsp&nbsp&nbsp&nbsp<%= link_to "修改密码",password_path(:change_name => p[:name]) %>
               </td>
             </tr>
         <% end %>

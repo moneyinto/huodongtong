@@ -1,4 +1,7 @@
-<div class="panel panel-default panel-body text-center center-block width" style = "background-color: #eeeeee">
+<ol class="breadcrumb">
+  <li><%= link_to_unless_current "首页",welcome_path %></li>
+  <li><%= link_to_unless_current "添加用户",adduser_path %></li>
+</ol><div class="panel panel-default panel-body text-center center-block width" style = "background-color: #eeeeee">
   <%= form_for @user do |f| %>
       <div class="center-block">
         <div class="">

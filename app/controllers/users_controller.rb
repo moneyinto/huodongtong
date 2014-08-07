@@ -10,6 +10,7 @@ class UsersController < ApplicationController
   end
 
   def login
+
   end
 
   def create
@@ -19,7 +20,7 @@ class UsersController < ApplicationController
     if current_user
       if current_user.identity == "admin"
         if @user.save
-          redirect_to  :adduser
+          redirect_to  :welcome
         else
           render :adduser
         end
@@ -59,7 +60,17 @@ class UsersController < ApplicationController
     redirect_to :welcome
   end
 
-  def changepassword
-    @user = User.new
+  def change_password_session
+    user = User.find_by_name(session[:name])
+    if params[:password] == params[:password_confirmation] && params[:password] != ""
+      redirect_to :welcome
+    else
+      flash[:error] = "密码输入不一致"
+      redirect_to :password
+    end
+  end
+
+  def password
+      session[:name] = params[:change_name]
   end
 end
