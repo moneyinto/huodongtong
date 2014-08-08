@@ -92,6 +92,7 @@ class UsersController < ApplicationController
       redirect_to :forgot_password_1
     else
       if User.find_by_name(params[:name])
+        cookies.permanent[:forget_issues] = User.find_by_name(params[:name]).forget_issues
         redirect_to :forgot_password_2
       else
         flash[:error] = "帐号不存在"
