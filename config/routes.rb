@@ -19,6 +19,8 @@ Rails.application.routes.draw do
 
   post "forgot_password_two" => "users#forgot_password_two"
 
+  post "forgot_password_three" => "users#forgot_password_three"
+
   post "create_login_session" => "users#create_login_session"
 
   post "change_password_session" => "users#change_password_session"

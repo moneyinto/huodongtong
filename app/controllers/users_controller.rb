@@ -108,7 +108,6 @@ class UsersController < ApplicationController
       redirect_to :forgot_password_2
     else
       if User.find_by_name(cookies.permanent[:name]).forget_answer == params[:forget_answer]
-        cookies.delete(:name)
         cookies.delete(:forget_issues)
         redirect_to :forgot_password_3
       else
@@ -117,4 +116,25 @@ class UsersController < ApplicationController
       end
     end
   end
+
+  def forgot_password_three
+    if params[:password] == "" || params[:password_confirmation] == ""
+      flash[:error] = "密码不能为空"
+      redirect_to :forgot_password_3
+    else
+      if params[:password] == params[:password_confirmation]
+        user = User.find_by_name(cookies.permanent[:name])
+        user.password = params[:password]
+        user.password_confirmation = params[:password_confirmation]
+        user.save
+        cookies.delete(:name)
+        cookies.permanent[:token] = user.token
+        redirect_to :welcome
+      else
+        flash[:error] = "两次密码输入不一致，请重新输入"
+        redirect_to :forgot_password_3
+      end
+    end
+  end
+
 end
