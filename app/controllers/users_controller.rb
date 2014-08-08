@@ -92,11 +92,28 @@ class UsersController < ApplicationController
       redirect_to :forgot_password_1
     else
       if User.find_by_name(params[:name])
+        cookies.permanent[:name] = User.find_by_name(params[:name]).name
         cookies.permanent[:forget_issues] = User.find_by_name(params[:name]).forget_issues
         redirect_to :forgot_password_2
       else
         flash[:error] = "帐号不存在"
         redirect_to :forgot_password_1
+      end
+    end
+  end
+
+  def forgot_password_two
+    if params[:forget_answer] == ""
+      flash[:error] = "忘记密码答案不能为空"
+      redirect_to :forgot_password_2
+    else
+      if User.find_by_name(cookies.permanent[:name]).forget_answer == params[:forget_answer]
+        cookies.delete(:name)
+        cookies.delete(:forget_issues)
+        redirect_to :forgot_password_3
+      else
+        flash[:error] = "忘记密码答案错误"
+        redirect_to :forgot_password_2
       end
     end
   end
