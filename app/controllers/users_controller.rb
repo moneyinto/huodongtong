@@ -86,14 +86,16 @@ class UsersController < ApplicationController
     end
   end
 
-  def forgot_password_1
+  def forgot_password_one
     if params[:name] == ""
       flash[:error] = "帐号不能为空"
+      redirect_to :forgot_password_1
     else
       if User.find_by_name(params[:name])
         redirect_to :forgot_password_2
       else
         flash[:error] = "帐号不存在"
+        redirect_to :forgot_password_1
       end
     end
   end
