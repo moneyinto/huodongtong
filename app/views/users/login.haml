@@ -8,12 +8,12 @@
           %dt.input-group-addon
             = label_tag "帐号"
           %dd
-            = text_field_tag :name, params[:name], :class => "form-control"
+            = text_field_tag :name, params[:name], :class => "form-control",:placeholder => "请输入帐号"
         %dl.input-group
           %dt.input-group-addon
             = label_tag "密码"
           %dd
-            = password_field_tag :password, params[:password], :class => "form-control"
+            = password_field_tag :password, params[:password], :class => "form-control",:placeholder => "请输入密码"
         = link_to "忘记密码",forgot_password_1_path, :class => "right"
         - if flash[:error]
           .alert.alert-danger
