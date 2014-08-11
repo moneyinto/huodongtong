@@ -7,120 +7,40 @@ angular.module('partyBidApp')
             'AngularJS',
             'Karma'
         ];
-        var username = localStorage.getItem('username');
         $scope.back_to_bidding_list = function () {
             localStorage.removeItem('priceCount');
-            localStorage.removeItem('sucess');
+            localStorage.removeItem('success');
             $location.path('bidding_list');
         };
+        var username = localStorage.getItem('username');
+
         var Activities = JSON.parse(localStorage.getItem('Activities')) || {};
+
         var activities = Activities[username] || [];
-        var activityName = JSON.parse(localStorage.getItem('activityName'));
+
         var BidList = JSON.parse(localStorage.getItem('BidList')) || {} ;
+
         var bidList = BidList[username] || [];
-        var bidInformation = bidList[0].bidInformation;
-
-        var information = _.sortBy(bidInformation, function (num) {
-            return num.bidPrice
-        });
-        var even = _.find(activities, function (num) {
-            return num.name == activityName
-        });
-
-        var peopleList = even.peopleList;
+        var activityName = getData('activityName');
+        var bidInformation = bidList[0].bidInformation || [];
         var people_list = [];
 
-        for (var j = 0; j < information.length; j++) {
-            var list = _.find(peopleList, function (num) {
-                return num.personPhone == information[j].bidPhone
-            });
-            people_list.push({'name': list.personName, 'phone': list.personPhone, 'price': information[j].bidPrice});
-        }
+        Bidding.bidPhone_equal_peoplePhone(bidInformation, activities, activityName, people_list);
 
         $scope.peopleList = people_list;
 
-        var priceCount = [];
-        var n = 1;
-        if (information) {
-            if(information.length == 1){
-                priceCount.push({'bidPrice': information[0].bidPrice, 'count': 1});
-            }
-            else{
-                for (var i = 0; i < information.length; i++) {
-                    if (i == information.length - 1) {
-                        if (information[i].bidPrice == information[i - 1].bidPrice) {
-                            priceCount.push({'bidPrice': information[i].bidPrice, 'count': n});
-                            break;
-                        }
-                        else {
-                            priceCount.push({'bidPrice': information[i].bidPrice, 'count': n});
-                        }
-                    }
-                    else {
-                        if (information[i].bidPrice == information[i + 1].bidPrice) {
-                            n = n + 1;
-                        }
-                        else {
-                            priceCount.push({'bidPrice': information[i].bidPrice, 'count': n});
-                            n = 1;
-                        }
-                    }
-                }
-            }
+        setData('priceCount', Bidding.price_count_array(bidInformation));
 
-        }
-        localStorage.setItem('priceCount', JSON.stringify(priceCount));
+        var success = Bidding.bidding_success(bidInformation) ? Bidding.bidding_success_people_message(people_list, bidInformation) : 0;
 
-        if (priceCount) {
-            var bidSuccess = _.find(priceCount, function (num) {
-                return num.count == 1
-            });
-            if(bidSuccess){
-                var sucess = _.find(people_list, function (num) {
-                    return num.price == bidSuccess.bidPrice
-                });
-            }
+        setData('success', success);
 
-        }
+        Bidding.bidding_pop(success,$scope);
 
-//        console.log(sucess);
-        localStorage.setItem('sucess', JSON.stringify(sucess));
-        if (sucess) {
-            $('#alert').modal('show');
-            $scope.bidResult1 = "竞价结果：";
-            $scope.phone1 = "电话：";
-            $scope.price1 = "竞价：￥";
-            $scope.sucessName1 = sucess.name;
-            $scope.sucessPhone1 = sucess.phone;
-            $scope.sucessPrice1 = sucess.price;
-            setTimeout(function () {
-                $scope.$apply(function () {
-                    $('#alert').modal('hide');
-                });
-            }, 3000);
-            setTimeout(function () {
-                $scope.$apply(function () {
-                    $scope.bidResult = "竞价结果：";
-                    $scope.phone = "电话：";
-                    $scope.price = "竞价：￥";
-                    $scope.sucessName = sucess.name;
-                    $scope.sucessPhone = sucess.phone;
-                    $scope.sucessPrice = sucess.price;
-                });
-            }, 3000);
-        }
-
-        console.log(bidList[0].name)
         $scope.bidName = bidList[0].name;
-        if (bidInformation) {
-            $scope.bidCount = bidInformation.length;
-        }
-        else {
-            $scope.bidCount = 0;
-        }
-        $scope.go_to_bidding_count = function(){
-            if(sucess){
-                $location.path('bidding_count');
-            }
+        $scope.bidCount = bidInformation.length;
+
+        $scope.go_to_bidding_count = function () {
+            $location.path('bidding_count');
         }
     });

@@ -8,43 +8,34 @@ angular.module('partyBidApp')
             'Karma'
         ];
         $scope.status = 1;
+
+        var activityName = getData('activityName');
         var username = localStorage.getItem('username');
-        var Activities = JSON.parse(localStorage.getItem('Activities')) || {};
-        var activities = Activities[username] || [];
-        var activityName = JSON.parse(localStorage.getItem('activityName'));
+
         var BidList = JSON.parse(localStorage.getItem('BidList')) || {} ;
+
         var bidList = BidList[username] || [];
-        var evens = _.filter(bidList, function(activity){ return  activity.activityName == activityName });
-        var even = _.find(bidList,function(num){ return num.colorStatus == 0});
-        if(even){
-            $scope.colorStatus = 0;
-        }
-        else{
-            $scope.colorStatus = 1;
-        }
-        for (var i = 0;i < activities.length;i++){
-            if(activities[i].status == 0){
-                $scope.status = 0;
-            }
+
+        $scope.colorStatus = Bidding.bidding_start_status(bidList) ? 0 : 1;
+
+        if (activity_start_status()) {
+            $scope.status = 0;
         }
 
-        $scope.back_to_activity_list = function(){
+        $scope.back_to_activity_list = function () {
             $location.path('/activity_list');
         };
-        $scope.go_to_bidding_sign_up = function(bid){
-            localStorage.setItem('bidName',JSON.stringify(bid.name))
+
+        $scope.go_to_bidding_sign_up = function (bid) {
+            setData('bidName', bid.name);
         };
-        $scope.start = function(){
-            var bid = evens.length + 1;
-            localStorage.setItem('bidName',JSON.stringify(bid));
-            var list = {'name': bid,'colorStatus':0,'activityName':activityName};
-            bidList.unshift(list);
-            BidList[username] = bidList;
-            localStorage.setItem('BidList',JSON.stringify(BidList));
+
+        $scope.start = function () {
+            Bidding.bidding_create(bidList,activityName);
             $location.path('/bidding_sign_up');
         };
 
-        $scope.evens = evens;
+        $scope.evens = Bidding.bidding_in_activity(bidList,activityName);
 
 
     });

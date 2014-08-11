@@ -10,105 +10,47 @@ angular.module('partyBidApp')
         $scope.back_to_list = function () {
             $location.path('/activity_list')
         };
-
         var username = localStorage.getItem('username');
 
         var Activities = JSON.parse(localStorage.getItem('Activities')) || {};
 
         var activities = Activities[username] || [];
 
-        var activityName = JSON.parse(localStorage.getItem('activityName'));
+        var BidList = JSON.parse(localStorage.getItem('BidList')) || {} ;
 
-        var bidList = JSON.parse(localStorage.getItem('bidList')) || [];
+        var bidList = BidList[username] || [];
 
-        if(bidList.length){
-            $scope.colorStatus = bidList[0].colorStatus;
-        }
-        else{
-            $scope.colorStatus = 1;
-        }
+        $scope.colorStatus = bidList.length ? bidList[0].colorStatus : 1;
 
-        if (!activityName) {
-            $scope.status = 1;
-        }
-        else {
-            for (var i = 0; i < activities.length; i++) {
-                if (activities[i].name == activityName) {
-                    $scope.status = activities[i].status;
-                    break;
-                }
-            }
-        }
+        $scope.status = Activity.activity_equal_activityName(activities).status;
 
-        for (var j = 0; j < activities.length;j++) {
-            if (activities[j].status == 0) {
-                $scope.check = 1;
-                break;
-            }
-            else {
-                $scope.check = 0;
-            }
-        }
+        $scope.check = activity_start_status() ? 1 : 0;
+
         $scope.start = function () {
-            for (var i = 0; i < activities.length; i++) {
-                if (activities[i].name == activityName) {
-                    $scope.status = activities[i].status = 0;
-                    var startActivity = {'startActivity': activityName};
-                    localStorage.setItem('startActivity', JSON.stringify(startActivity));
-                    Activities[username] = activities;
-                    localStorage.setItem('Activities', JSON.stringify(Activities));
-                    break;
-                }
-            }
+            var username = localStorage.getItem('username');
+
+            var Activities = JSON.parse(localStorage.getItem('Activities')) || {};
+
+            var activities = Activities[username] || [];
+            $scope.status = Activity.activity_equal_activityName(activities).status = 0;
+            Activities[username] = activities;
+            setData('Activities', Activities);
         };
 
         $scope.refresh = function () {
-            var username = localStorage.getItem('username');
-
             var Activities = JSON.parse(localStorage.getItem('Activities')) || {};
-
             var activities = Activities[username] || [];
-
-            var activityName = JSON.parse(localStorage.getItem('activityName'));
-
-            for (var i = 0; i < activities.length; i++) {
-                if (activities[i].name == activityName) {
-                    var peopleList = activities[i].peopleList || [];
-                    $scope.peopleList = activities[i].peopleList;
-                    if (peopleList.length) {
-                        $scope.peopleCount = peopleList.length;
-                    }
-                    else {
-                        $scope.peopleCount = 0;
-                    }
-                    break;
-                }
-            }
+            var peopleList = Activity.activity_equal_activityName(activities).peopleList || [];
+            $scope.peopleList = peopleList;
+            $scope.peopleCount = peopleList.length;
         };
+
         $scope.refresh();
+
         Activities[username] = activities;
-        localStorage.setItem('Activities', JSON.stringify(Activities));
+        setData('Activities', Activities);
 
         $scope.end = function () {
-            var username = localStorage.getItem('username');
-
-            var Activities = JSON.parse(localStorage.getItem('Activities')) || {};
-
-            var activities = Activities[username] || [];
-
-            if (confirm("确认要结束本次报名吗？")) {
-                $scope.check = 0;
-                for (var i = 0; i < activities.length; i++) {
-                    if (activities[i].name == activityName) {
-                        $scope.status = activities[i].status = 1;
-                        localStorage.removeItem('startActivity');
-                        Activities[username] = activities;
-                        localStorage.setItem('Activities', JSON.stringify(Activities));
-                        $location.path('/bidding_list');
-                        break;
-                    }
-                }
-            }
-
+            Activity.activity_sign_up_end($scope,$location);
         };
     });

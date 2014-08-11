@@ -14,142 +14,49 @@ var native_accessor = {
 
     process_received_message: function (json_message) {
         var username = localStorage.getItem('username');
+
         var Activities = JSON.parse(localStorage.getItem('Activities')) || {};
+
         var activities = Activities[username] || [];
-        var BidList = JSON.parse(localStorage.getItem('BidList')) || {};
+
+        var BidList = JSON.parse(localStorage.getItem('BidList')) || {} ;
+
         var bidList = BidList[username] || [];
         var message = json_message.messages[0].message.replace(/\s/g, "");
-        var exist = 1;
         if (message.search(/jj/i) == 0) {
             var bid_price = message.substr(2);
             var bid_phone = json_message.messages[0].phone;
-            if (bidList) {
-                if (bidList[0].colorStatus == 0) {
-                    var bidInformation = bidList[0].bidInformation || [];
-                    for (var n = 0; n < activities.length; n++) {
-                        if (activities[n].name == bidList[0].activityName) {
-                            var people_list = activities[n].peopleList;
-                            if (people_list) {
-                                var even = _.find(people_list, function (person_phone) {
-                                    return person_phone.personPhone == bid_phone
-                                });
-                                if (even) {
-                                    if (bidInformation.length) {
-                                        for (var x = 0; x < bidInformation.length; x++) {
-                                            if (bid_phone == bidInformation[x].bidPhone) {
-                                                console.log('你已出价，请勿重复出价！');
-                                                native_accessor.send_sms(json_message.messages[0].phone, "你已出价，请勿重复出价！");
-                                                exist = 0;
-                                                break;
-                                            }
-                                        }
-                                        if (exist == 1) {
-                                            bidInformation.unshift({'bidPrice': bid_price, 'bidPhone': bid_phone});
-                                            bidList[0].bidInformation = bidInformation;
-                                            BidList[username] = bidList;
-                                            localStorage.setItem('BidList', JSON.stringify(BidList));
-//                                            console.log('恭喜！你已出价成功！');
-                                            native_accessor.send_sms(json_message.messages[0].phone, "恭喜！你已出价成功！");
-                                        }
-                                    }
-                                    if (!bidInformation.length) {
-                                        bidInformation.unshift({'bidPrice': bid_price, 'bidPhone': bid_phone});
-                                        bidList[0].bidInformation = bidInformation;
-                                        BidList[username] = bidList;
-                                        localStorage.setItem('BidList', JSON.stringify(BidList));
-//                                        console.log('恭喜！你已出价成功！');
-                                        native_accessor.send_sms(json_message.messages[0].phone, "恭喜！你已出价成功！");
-                                    }
-                                    var bidSignUp = document.getElementById("bidSignUp");
-                                    if (bidSignUp) {
-                                        var scopeOne = angular.element(bidSignUp).scope();
-                                        scopeOne.$apply(function () {
-                                            scopeOne.fresh();
-                                        });
-                                    }
-                                }
-                                else {
-//                                    console.log('对不起，你没有报名该活动！');
-                                    native_accessor.send_sms(json_message.messages[0].phone, "对不起，你没有报名该活动！");
-                                    break;
-                                }
-                            }
-                            else {
-//                                console.log('对不起，你没有报名该活动！');
-                                native_accessor.send_sms(json_message.messages[0].phone, "对不起，你没有报名该活动！");
-                            }
-                        }
-                    }
-                }
-                else {
-//                    console.log('活动尚未开始或已经结束！');
-                    native_accessor.send_sms(json_message.messages[0].phone, "活动尚未开始或已经结束！");
-                }
+            var bidInformation = bidList[0].bidInformation || [];
+            if (bidList[0].colorStatus == 0 && bid_phone_repeat(bidInformation, bid_phone)) {
+                native_accessor.send_sms(json_message.messages[0].phone, "你已出价，请勿重复出价！");
             }
-            else {
-//                console.log('活动竞价尚未开始！');
-                native_accessor.send_sms(json_message.messages[0].phone, "活动竞价尚未开始！");
+            if (bidList[0].colorStatus == 0 && !bid_phone_repeat(bidInformation, bid_phone) && bid_phone_equal_people_phone(activities, bidList, bid_phone)) {
+                bid_success(bidInformation, bid_price, bid_phone, bidList);
+                native_accessor.send_sms(json_message.messages[0].phone, "恭喜！你已出价成功！");
+            }
+            bid_sign_up_refresh();
+            if (bidList[0].colorStatus == 0 && !bid_phone_equal_people_phone(activities, bidList, bid_phone)) {
+                native_accessor.send_sms(json_message.messages[0].phone, "对不起，你没有报名该活动！");
+            }
+
+            if (bidList[0].colorStatus == 1) {
+                native_accessor.send_sms(json_message.messages[0].phone, "活动尚未开始或已经结束！");
             }
         }
 
         if (message.search(/bm/i) == 0) {
             var person_name = message.substr(2);
             var person_phone = json_message.messages[0].phone;
-            if (JSON.parse(localStorage.getItem('startActivity'))) {
-                var startActivity = JSON.parse(localStorage.getItem('startActivity'));
-                for (var i = 0; i < activities.length; i++) {
-                    if (activities[i].name == startActivity.startActivity) {
-                        if (activities[i].status == 0) {
-                            var peopleList = activities[i].peopleList || [];
-                            for (var j = 0; j < peopleList.length; j++) {
-                                if (peopleList[j].personPhone == person_phone) {
-                                    native_accessor.send_sms(json_message.messages[0].phone, "您已报名成功，请勿重复报名");
-                                    exist = 0;
-                                    break;
-                                }
-                            }
-                            if (exist == 1) {
-                                peopleList.unshift({'personName': person_name, 'personPhone': person_phone});
-                                activities[i].peopleList = peopleList;
-                                Activities[username] = activities;
-                                localStorage.setItem('Activities', JSON.stringify(Activities));
-                                native_accessor.send_sms(json_message.messages[0].phone, "恭喜报名成功！");
-//                                console.log("恭喜报名成功！");
-                            }
-
-
-                            var signUp = document.getElementById("signUp");
-                            if (signUp) {
-                                var scope = angular.element(signUp).scope();
-                                scope.$apply(function () {
-                                    scope.refresh();
-                                });
-                            }
-
-                            if (!peopleList.length) {
-                                peopleList.unshift({'personName': person_name, 'personPhone': person_phone});
-                                activities[i].peopleList = peopleList;
-                                Activities[username] = activities;
-                                localStorage.setItem('Activities', JSON.stringify(Activities));
-                            }
-                        }
-                        else {
-                            native_accessor.send_sms(json_message.messages[0].phone, "活动尚未开始或已经结束！");
-                            console.log("活动尚未开始或已经结束！");
-                        }
-                    }
-
-                }
+            if (activity_start_status(activities)) {
+                var peopleList = activity_start_status(activities).peopleList || [];
+                activity_sign_up_repeat(peopleList, person_phone, json_message);
+                activity_sign_up_success(peopleList, activities, person_name, person_phone, json_message);
+                activity_sign_up_refresh();
             }
-            else {
-                native_accessor.send_sms(json_message.messages[0].phone, "活动尚未开始或已经结束！");
-                console.log('活动尚未开始或已经结束！');
-            }
-
-//        location.reload([bForceGet]);
+            activity_sign_up_fail(activities, json_message);
         }
     }
-}
+};
 
 function notify_message_received(message_json) {
     //console.log(JSON.stringify(message_json));

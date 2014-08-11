@@ -7,38 +7,26 @@ angular.module('partyBidApp')
             'AngularJS',
             'Karma'
         ];
+        var username = localStorage.getItem('username');
+
+        var BidList = JSON.parse(localStorage.getItem('BidList')) || {} ;
+
+        var bidList = BidList[username] || [];
         $scope.back_to_bidding_list = function () {
             localStorage.removeItem('priceCount');
-            localStorage.removeItem('sucess');
+            localStorage.removeItem('success');
             $location.path('bidding_list');
         };
 
+        var bidInformation = bidList[0].bidInformation || [];
+        var priceCount = getData('priceCount');
+        var success = JSON.parse(localStorage.success);
 
-        var username = localStorage.getItem('username');
-        var BidList = JSON.parse(localStorage.getItem('BidList')) || {} ;
-        var bidList = BidList[username] || [];
-        var bidInformation = bidList[0].bidInformation;
+        if (success) {
+            $scope.bidResult = "竞价结果：" + success.name + "电话：" + success.phone + "竞价：￥" + success.price;
+        }
 
-        var priceCount = JSON.parse(localStorage.getItem('priceCount'));
-        var sucess = JSON.parse(localStorage.getItem('sucess'));
-
-            $scope.priceCount = priceCount;
-            $scope.bidResult = "竞价结果：";
-            $scope.phone = "电话：";
-            $scope.price = "竞价：￥";
-            $scope.sucessName = sucess.name;
-            $scope.sucessPhone = sucess.phone;
-            $scope.sucessPrice = sucess.price;
-
-
+        $scope.priceCount = priceCount;
         $scope.bidName = bidList[0].name;
-        if (bidInformation) {
-            $scope.bidCount = bidInformation.length;
-            $scope.a = "#/bidding_count";
-        }
-        else {
-            $scope.a = "";
-            $scope.bidCount = 0;
-        }
-
+        $scope.bidCount = bidInformation.length;
     });
