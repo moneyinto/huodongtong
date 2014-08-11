@@ -27,6 +27,8 @@ Rails.application.routes.draw do
 
   post "change_password_session" => "admins#change_password_session"
 
+  post "login_activity"  => "users#login_activity"
+
   delete "delete_user" => "users#delete_user", :as => "delete_user"
 
   delete "logout" => "users#logout", :as => "logout"

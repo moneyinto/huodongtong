@@ -1,6 +1,8 @@
 #encoding: utf-8
 class UsersController < ApplicationController
-
+  protect_from_forgery with: :null_session, if: Proc.new { |c| c.request.format == 'application/json' }
+  # prepend_before_filter :load_session, only: :flash_upload
+  # skip_before_filter :verify_authenticity_token, :only => [:create]
   def signup
     @user = User.new
   end
@@ -19,7 +21,7 @@ class UsersController < ApplicationController
     if current_user
       if current_user.identity == "admin"
         if @user.save
-          redirect_to  :admin_welcome
+          redirect_to :admin_welcome
         else
           render :adduser
         end
@@ -49,7 +51,6 @@ class UsersController < ApplicationController
       redirect_to :login
     end
   end
-
 
 
   def delete_user
@@ -129,6 +130,17 @@ class UsersController < ApplicationController
       end
     else
       redirect_to :login
+    end
+  end
+
+  def login_activity
+    user = User.find_by_name(params[:userName])
+    respond_to do |format|
+      if user && user.authenticate(params[:userPassword])
+        format.json { render json: {data: 'true'} }
+      else
+        format.json { render json: {data: 'false'} }
+      end
     end
   end
 

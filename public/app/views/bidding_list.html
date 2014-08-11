@@ -1,0 +1,23 @@
+<header style="background-image:-webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #0079c8), color-stop(1, #0067b6))"
+        class="header">竞价列表
+    <button ng-click="start()" class="header-right btn btn-4 btn-primary" ng-disabled="!status || !colorStatus">开始
+    </button>
+    <button ng-click="back_to_activity_list()" class="header-left btn btn-4 btn-primary">返回</button>
+</header>
+
+<div id="wrapper" class="wrapper scrollable">
+    <ul class="list-style-2">
+        <li ng-repeat="bid in evens track by $index">
+            <a href="#/bidding_sign_up" ng-click='go_to_bidding_sign_up(bid)' style="text-align: center">
+                <h2 class="color{{bid.colorStatus}}">竞价{{bid.name}}</h2>
+            </a>
+        </li>
+    </ul>
+</div>
+
+<ul style="background-image:-webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #3d3d3d), color-stop(1, #272727)); margin-bottom: 0px;"
+    class="footer-nav footer-nav-2tabs footer">
+    <li><a href="#/create_sign_up" ng-click="sign_up()" style="font-size: 30px;padding-top: 30px;padding-bottom: 30px;">报名</a>
+    </li>
+    <li><a href="" ng-click="bidding()" style="font-size: 30px;padding-top: 30px;padding-bottom: 30px;">竞价</a></li>
+</ul>

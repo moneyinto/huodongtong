@@ -1,0 +1,21 @@
+<header class = "header" style="background-image:-webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #0079c8), color-stop(1, #0067b6))">
+    竞价{{bidName}}({{bidCount}}人)
+    <button ng-click="back_to_bidding_list()" class="header-left btn btn-4 btn-primary">返回</button>
+</header>
+
+<div id="wrapper" class="wrapper scrollable">
+    <ul class="list-style-2">
+        <li ng-repeat="price in priceCount">
+            <h2><p style="font-size: 30px">￥{{price.bidPrice}}</p>
+
+                <p  style="font-size: 30px" class = "header-right">{{price.count}}人</p></h2>
+        </li>
+    </ul>
+</div>
+
+<ul class="footer-nav footer-nav-2tabs footer" style = " margin-bottom: 0px;">
+    <h3> <p class = "text-center"> {{bidResult}}{{sucessName}} {{price}}{{sucessPrice}} {{phone}}{{sucessPhone}}</p></h3>
+    <li style="background-image:-webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #3d3d3d), color-stop(1, #272727));"><a href="#/bidding_result"  style="font-size: 30px;padding-top: 30px;padding-bottom: 30px;">竞价结果</a></li>
+    <li style="background-image:-webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #3d3d3d), color-stop(1, #272727));"><a href=""
+           style="font-size: 30px;padding-top: 30px;padding-bottom: 30px;">竞价统计</a></li>
+</ul>

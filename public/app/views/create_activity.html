@@ -1,0 +1,10 @@
+<header style="background-image:-webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #0079c8), color-stop(1, #0067b6))"
+        class="header">创建活动
+    <button ng-click="back_to_list()" ng-show="activities" class="header-left btn btn-4 btn-primary">返回</button>
+</header>
+<div ng-controller="CreateActivityCtrl" class="wrapper"><h4>活动名称</h4><input ng-model="activityName" style="height: 30px"
+                                                                            class="input-full"/>
+
+    <p style="color:#FF0000 ;height: 10px">{{warning}}</p>
+    <button ng-click="create()" ng-disabled="!activityName" class="btn btn-primary btn-block">创建</button>
+</div>
