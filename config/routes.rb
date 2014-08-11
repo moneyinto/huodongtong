@@ -5,9 +5,11 @@ Rails.application.routes.draw do
 
   get "/welcome" => "users#welcome", :as => "welcome"
 
+  get "/admin_welcome" => "admins#admin_welcome", :as => "admin_welcome"
+
   get "/adduser" => "users#adduser", :as => "adduser"
 
-  get "/password" => "users#password", :as => "password"
+  get "/password" => "admins#password", :as => "password"
 
   get "/forgot_password_1" => "users#forgot_password_1"
 
@@ -23,7 +25,7 @@ Rails.application.routes.draw do
 
   post "create_login_session" => "users#create_login_session"
 
-  post "change_password_session" => "users#change_password_session"
+  post "change_password_session" => "admins#change_password_session"
 
   delete "delete_user" => "users#delete_user", :as => "delete_user"
 

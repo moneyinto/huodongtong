@@ -1,5 +1,5 @@
 %ol.breadcrumb
-  %li= link_to_unless_current "首页",welcome_path
+  %li= link_to_unless_current "首页",admin_welcome_path
   %li= "添加用户"
 .panel.panel-default.panel-body.text-center.center-block.width{:style => "background-color: #eeeeee"}
   = form_for @user do |f|

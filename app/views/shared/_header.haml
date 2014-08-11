@@ -2,4 +2,4 @@
   %h1 活动通
   - if current_user
     %li.header-right
-      你好，#{link_to_unless_current current_user.name,welcome_path}！  #{link_to "退出", logout_path, method: "delete"}
+      你好，#{link_to_unless_current current_user.name,admin_welcome_path}！  #{link_to "退出", logout_path, method: "delete"}
