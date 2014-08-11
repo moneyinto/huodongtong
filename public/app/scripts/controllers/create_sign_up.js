@@ -8,11 +8,19 @@ angular.module('partyBidApp')
             'Karma'
         ];
         $scope.back_to_list = function () {
-            $location.path('/create_list')
+            $location.path('/activity_list')
         };
-        var activities = JSON.parse(localStorage.getItem('activities')) || [];
+
+        var username = localStorage.getItem('username');
+
+        var Activities = JSON.parse(localStorage.getItem('Activities')) || {};
+
+        var activities = Activities[username] || [];
+
         var activityName = JSON.parse(localStorage.getItem('activityName'));
+
         var bidList = JSON.parse(localStorage.getItem('bidList')) || [];
+
         if(bidList.length){
             $scope.colorStatus = bidList[0].colorStatus;
         }
@@ -47,22 +55,22 @@ angular.module('partyBidApp')
                     $scope.status = activities[i].status = 0;
                     var startActivity = {'startActivity': activityName};
                     localStorage.setItem('startActivity', JSON.stringify(startActivity));
-                    localStorage.setItem('activities', JSON.stringify(activities));
+                    Activities[username] = activities;
+                    localStorage.setItem('Activities', JSON.stringify(Activities));
                     break;
                 }
             }
         };
 
-
-//        $scope.bidding = function () {
-//            $scope.start = 0;
-//            $location.path('/bidding_list');
-//        };
-
         $scope.refresh = function () {
-//            console.log('1111');
-            var activities = JSON.parse(localStorage.getItem('activities'));
+            var username = localStorage.getItem('username');
+
+            var Activities = JSON.parse(localStorage.getItem('Activities')) || {};
+
+            var activities = Activities[username] || [];
+
             var activityName = JSON.parse(localStorage.getItem('activityName'));
+
             for (var i = 0; i < activities.length; i++) {
                 if (activities[i].name == activityName) {
                     var peopleList = activities[i].peopleList || [];
@@ -78,18 +86,24 @@ angular.module('partyBidApp')
             }
         };
         $scope.refresh();
-        localStorage.setItem('activities', JSON.stringify(activities));
+        Activities[username] = activities;
+        localStorage.setItem('Activities', JSON.stringify(Activities));
+
         $scope.end = function () {
-            var activities = JSON.parse(localStorage.getItem('activities'));
+            var username = localStorage.getItem('username');
+
+            var Activities = JSON.parse(localStorage.getItem('Activities')) || {};
+
+            var activities = Activities[username] || [];
+
             if (confirm("确认要结束本次报名吗？")) {
                 $scope.check = 0;
                 for (var i = 0; i < activities.length; i++) {
                     if (activities[i].name == activityName) {
-                        console.log(activities[i]);
                         $scope.status = activities[i].status = 1;
                         localStorage.removeItem('startActivity');
-                        console.log(activities[i]);
-                        localStorage.setItem('activities', JSON.stringify(activities));
+                        Activities[username] = activities;
+                        localStorage.setItem('Activities', JSON.stringify(Activities));
                         $location.path('/bidding_list');
                         break;
                     }

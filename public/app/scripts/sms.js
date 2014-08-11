@@ -13,8 +13,11 @@ var native_accessor = {
     },
 
     process_received_message: function (json_message) {
-        var activities = JSON.parse(localStorage.getItem('activities'));
-        var bidList = JSON.parse(localStorage.getItem('bidList'));
+        var username = localStorage.getItem('username');
+        var Activities = JSON.parse(localStorage.getItem('Activities')) || {};
+        var activities = Activities[username] || [];
+        var BidList = JSON.parse(localStorage.getItem('BidList')) || {};
+        var bidList = BidList[username] || [];
         var message = json_message.messages[0].message.replace(/\s/g, "");
         var exist = 1;
         if (message.search(/jj/i) == 0) {
@@ -43,7 +46,8 @@ var native_accessor = {
                                         if (exist == 1) {
                                             bidInformation.unshift({'bidPrice': bid_price, 'bidPhone': bid_phone});
                                             bidList[0].bidInformation = bidInformation;
-                                            localStorage.setItem('bidList', JSON.stringify(bidList));
+                                            BidList[username] = bidList;
+                                            localStorage.setItem('BidList', JSON.stringify(BidList));
 //                                            console.log('恭喜！你已出价成功！');
                                             native_accessor.send_sms(json_message.messages[0].phone, "恭喜！你已出价成功！");
                                         }
@@ -51,7 +55,8 @@ var native_accessor = {
                                     if (!bidInformation.length) {
                                         bidInformation.unshift({'bidPrice': bid_price, 'bidPhone': bid_phone});
                                         bidList[0].bidInformation = bidInformation;
-                                        localStorage.setItem('bidList', JSON.stringify(bidList));
+                                        BidList[username] = bidList;
+                                        localStorage.setItem('BidList', JSON.stringify(BidList));
 //                                        console.log('恭喜！你已出价成功！');
                                         native_accessor.send_sms(json_message.messages[0].phone, "恭喜！你已出价成功！");
                                     }
@@ -106,7 +111,8 @@ var native_accessor = {
                             if (exist == 1) {
                                 peopleList.unshift({'personName': person_name, 'personPhone': person_phone});
                                 activities[i].peopleList = peopleList;
-                                localStorage.setItem('activities', JSON.stringify(activities));
+                                Activities[username] = activities;
+                                localStorage.setItem('Activities', JSON.stringify(Activities));
                                 native_accessor.send_sms(json_message.messages[0].phone, "恭喜报名成功！");
 //                                console.log("恭喜报名成功！");
                             }
@@ -123,7 +129,8 @@ var native_accessor = {
                             if (!peopleList.length) {
                                 peopleList.unshift({'personName': person_name, 'personPhone': person_phone});
                                 activities[i].peopleList = peopleList;
-                                localStorage.setItem('activities', JSON.stringify(activities));
+                                Activities[username] = activities;
+                                localStorage.setItem('Activities', JSON.stringify(Activities));
                             }
                         }
                         else {

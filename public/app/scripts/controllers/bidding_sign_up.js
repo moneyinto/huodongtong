@@ -7,27 +7,34 @@ angular.module('partyBidApp')
             'AngularJS',
             'Karma'
         ];
-        var bidList = JSON.parse(localStorage.getItem('bidList'));
-        var activities = JSON.parse(localStorage.getItem('activities'));
+        var username = localStorage.getItem('username');
+//        var Activities = JSON.parse(localStorage.getItem('Activities')) || {};
+//        var activities = Activities[username] || [];
         var activityName = JSON.parse(localStorage.getItem('activityName'));
+        var BidList = JSON.parse(localStorage.getItem('BidList')) || {} ;
+        var bidList = BidList[username] || [];
         var bid_name = JSON.parse(localStorage.getItem('bidName'));
         $scope.colorStatus = _.find(bidList,function(num){ return num.name == bid_name && num.activityName == activityName}).colorStatus;
         $scope.back_to_bidding_list = function(){
             $location.path('bidding_list');
         };
         $scope.end = function(){
-            var bidList = JSON.parse(localStorage.getItem('bidList'));
+            var BidList = JSON.parse(localStorage.getItem('BidList')) || {} ;
+            var bidList = BidList[username] || [];
             if(confirm("确定要结束本次竞价？")){
                 bidList[0].colorStatus = 1;
                 localStorage.removeItem('bidName');
-                localStorage.setItem('bidList',JSON.stringify(bidList));
+                BidList[username] = bidList;
+                localStorage.setItem('BidList',JSON.stringify(BidList));
                 $location.path('bidding_result');
             }
         };
         $scope.fresh = function () {
-            var bidList = JSON.parse(localStorage.getItem('bidList'));
-            var activities = JSON.parse(localStorage.getItem('activities'));
+            var Activities = JSON.parse(localStorage.getItem('Activities')) || {};
+            var activities = Activities[username] || [];
             var activityName = JSON.parse(localStorage.getItem('activityName'));
+            var BidList = JSON.parse(localStorage.getItem('BidList')) || {} ;
+            var bidList = BidList[username] || [];
             var bid_name = JSON.parse(localStorage.getItem('bidName'));
             var bid_list = _.find(bidList,function(num){ return num.name == bid_name && num.activityName == activityName});
             var bidInformation = bid_list.bidInformation || [];

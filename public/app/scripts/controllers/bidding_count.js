@@ -13,7 +13,10 @@ angular.module('partyBidApp')
             $location.path('bidding_list');
         };
 
-        var bidList = JSON.parse(localStorage.getItem('bidList'));
+
+        var username = localStorage.getItem('username');
+        var BidList = JSON.parse(localStorage.getItem('BidList')) || {} ;
+        var bidList = BidList[username] || [];
         var bidInformation = bidList[0].bidInformation;
 
         var priceCount = JSON.parse(localStorage.getItem('priceCount'));

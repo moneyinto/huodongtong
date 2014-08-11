@@ -7,14 +7,17 @@ angular.module('partyBidApp')
             'AngularJS',
             'Karma'
         ];
+        var username = localStorage.getItem('username');
         $scope.back_to_bidding_list = function () {
             localStorage.removeItem('priceCount');
             localStorage.removeItem('sucess');
             $location.path('bidding_list');
         };
-        var activities = JSON.parse(localStorage.getItem('activities'));
+        var Activities = JSON.parse(localStorage.getItem('Activities')) || {};
+        var activities = Activities[username] || [];
         var activityName = JSON.parse(localStorage.getItem('activityName'));
-        var bidList = JSON.parse(localStorage.getItem('bidList'));
+        var BidList = JSON.parse(localStorage.getItem('BidList')) || {} ;
+        var bidList = BidList[username] || [];
         var bidInformation = bidList[0].bidInformation;
 
         var information = _.sortBy(bidInformation, function (num) {
@@ -32,10 +35,7 @@ angular.module('partyBidApp')
                 return num.personPhone == information[j].bidPhone
             });
             people_list.push({'name': list.personName, 'phone': list.personPhone, 'price': information[j].bidPrice});
-
         }
-        console.log(1)
-        console.log(information);
 
         $scope.peopleList = people_list;
 
@@ -69,7 +69,6 @@ angular.module('partyBidApp')
             }
 
         }
-        console.log(2)
         localStorage.setItem('priceCount', JSON.stringify(priceCount));
 
         if (priceCount) {
@@ -84,7 +83,6 @@ angular.module('partyBidApp')
 
         }
 
-        console.log(3)
 //        console.log(sucess);
         localStorage.setItem('sucess', JSON.stringify(sucess));
         if (sucess) {

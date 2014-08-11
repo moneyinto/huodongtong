@@ -7,12 +7,17 @@ angular.module('partyBidApp')
             'AngularJS',
             'Karma'
         ];
-        var activities = JSON.parse(localStorage.getItem('activities')) || [];
+        var username = localStorage.getItem('username');
 
-        var bidList = JSON.parse(localStorage.getItem('bidList')) || [] ;
+        var Activities = JSON.parse(localStorage.getItem('Activities')) || {};
+
+        var activities = Activities[username] || [];
+
+        var BidList = JSON.parse(localStorage.getItem('BidList')) || {} ;
+
+        var bidList = BidList[username] || [];
         for(var i = 0;i < activities.length;i++){
             var evens = _.filter(bidList, function(activity){ return  activity.activityName == activities[i].name; });
-            console.log(evens.length);
             if(evens.length){
                 activities[i].colorStatus = evens[0].colorStatus;
             }
@@ -21,7 +26,6 @@ angular.module('partyBidApp')
             }
 
         }
-        console.log(activities);
         $scope.activities = activities;
 
         if (activities.length) {
@@ -37,5 +41,4 @@ angular.module('partyBidApp')
             var activityName = activity.name;
             localStorage.setItem('activityName' , JSON.stringify(activityName))
         };
-        console.log(activities);
     });

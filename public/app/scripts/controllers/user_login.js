@@ -6,6 +6,7 @@ angular.module('partyBidApp')
             $http.post('/login_activity.json', {"userName": name, "userPassword": password}).success(function (back) {
                 if (back.data == 'true') {
                     $location.path('/activity_list');
+                    localStorage.setItem('username',name);
                 }
                 else {
                     $location.path('/');

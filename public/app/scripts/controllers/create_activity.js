@@ -11,13 +11,18 @@ angular.module('partyBidApp')
             $location.path('/activity_list')
         };
 
-        $scope.activities = JSON.parse(localStorage.getItem('activities'));
+        var username = localStorage.getItem('username');
+
+        var Activities =  JSON.parse(localStorage.getItem('Activities')) || {} ;
+
+        $scope.activities = Activities[username] || [];
 
         $scope.create = function () {
 
             var activityName = $scope.activityName;
 
-            var activities =  JSON.parse(localStorage.getItem('activities')) || [] ;
+            var Activities =  JSON.parse(localStorage.getItem('Activities')) || {} ;
+            var activities = Activities[username] || [];
 
             for (var i = 0; i < activities.length; i++) {
 
@@ -26,7 +31,8 @@ angular.module('partyBidApp')
                     break;
                 } else if (i + 1 == activities.length) {
                     activities.unshift({'name' : activityName,'status':1});
-                    localStorage.setItem('activities', JSON.stringify(activities));
+                    Activities[username] = activities;
+                    localStorage.setItem('Activities', JSON.stringify(Activities));
                     localStorage.setItem('activityName',activityName);
                     $location.path('/create_sign_up');
                     break;
@@ -34,7 +40,8 @@ angular.module('partyBidApp')
             }
             if (!activities.length) {
                 activities.unshift({'name': activityName,'status':1});
-                localStorage.setItem('activities', JSON.stringify(activities));
+                Activities[username] = activities;
+                localStorage.setItem('Activities', JSON.stringify(Activities));
                 localStorage.setItem('activityName',activityName);
                 $location.path('/create_sign_up')
             }
