@@ -41,12 +41,16 @@ angular.module('partyBidApp')
             var bidList = BidList[username] || [];
             var activity = [];
             var peopleList = [];
+            var bid_list = [];
+            var bidMessage = [];
             _.map(activities,function(num){
                 activity.unshift({"username": username,"activityname": num.name});
                 Activity.get_peopleList(peopleList,username,num);
             });
-            console.log(peopleList);
-            $http.post( '/synchronization.json', {"username":username,"activity":activity,"peopleList": peopleList})
+            _.map(bidList,function(bid){
+                bid_list.push({"username": username,"activityname": bid.activityName,"bidname": bid.name,"status": bid.colorStatus});
+            });
+            $http.post( '/synchronization.json', {"username":username,"activity":activity,"peopleList": peopleList,"bidList": bid_list})
 
         };
     });
