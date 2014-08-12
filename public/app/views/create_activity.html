@@ -1,5 +1,6 @@
 <header style="background-image:-webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #0079c8), color-stop(1, #0067b6))"
         class="header">创建活动
+    <button ng-click="logout()" class="btn btn-4 btn-primary header-right">退出</button>
     <button ng-click="back_to_list()" ng-show="activities" class="header-left btn btn-4 btn-primary">返回</button>
 </header>
 <div ng-controller="CreateActivityCtrl" class="wrapper"><h4>活动名称</h4><input ng-model="activityName" style="height: 30px"

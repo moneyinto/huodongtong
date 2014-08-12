@@ -143,4 +143,8 @@ class UsersController < ApplicationController
     end
   end
 
+  def synchronization
+    Event.update_events(params[:username],params[:activity])
+
+  end
 end

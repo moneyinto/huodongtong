@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('partyBidApp')
-    .controller('ActivityListCtrl', function ($scope, $location) {
+    .controller('ActivityListCtrl', function ($scope, $location,$http) {
         $scope.awesomeThings = [
             'HTML5 Boilerplate',
             'AngularJS',
@@ -39,13 +39,11 @@ angular.module('partyBidApp')
             var activities = Activities[username] || [];
             var BidList = JSON.parse(localStorage.getItem('BidList')) || {} ;
             var bidList = BidList[username] || [];
-            $http.post( server + '/synchronization.json', {"userName": username,"activities":activities,"bidList":bidList}).success(function (back) {
-                if (back.data == 'true') {
-                    alert("同步成功！");
-                }
-                else {
-                    alert("同步失败，请重新同步！");
-                }
+            var activity = [];
+            _.map(activities,function(num){
+                activity.unshift({"username": username,"activityname": num.name})
             });
+            $http.post( '/synchronization.json', {"username":username,"activity":activity})
+
         };
     });

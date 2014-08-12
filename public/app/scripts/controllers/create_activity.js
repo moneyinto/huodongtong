@@ -9,7 +9,9 @@ angular.module('partyBidApp')
         ];
 
         var username = localStorage.getItem('username');
-
+        if (!username) {
+            $location.path('/')
+        }
         var Activities = JSON.parse(localStorage.getItem('Activities')) || {};
 
         var activities = Activities[username] || [];
@@ -21,8 +23,13 @@ angular.module('partyBidApp')
 
         $scope.create = function () {
             var activity_name = $scope.activityName;
-            Activity.activity_repeat(activity_name,$scope);
-            Activity.create_activity(activity_name,$location);
+            Activity.activity_repeat(activity_name, $scope);
+            Activity.create_activity(activity_name, $location);
+        };
+
+        $scope.logout = function () {
+            localStorage.removeItem('username');
+            $location.path('/')
         }
     });
 
