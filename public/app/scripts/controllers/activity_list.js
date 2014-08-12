@@ -32,4 +32,20 @@ angular.module('partyBidApp')
             var activityName = activity.name;
             setData('activityName',activityName);
         };
+
+        $scope.Synchronization = function(){
+            var username = localStorage.getItem('username');
+            var Activities = JSON.parse(localStorage.getItem('Activities')) || {};
+            var activities = Activities[username] || [];
+            var BidList = JSON.parse(localStorage.getItem('BidList')) || {} ;
+            var bidList = BidList[username] || [];
+            $http.post( server + '/synchronization.json', {"userName": username,"activities":activities,"bidList":bidList}).success(function (back) {
+                if (back.data == 'true') {
+                    alert("同步成功！");
+                }
+                else {
+                    alert("同步失败，请重新同步！");
+                }
+            });
+        };
     });

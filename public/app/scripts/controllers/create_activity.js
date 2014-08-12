@@ -15,7 +15,7 @@ angular.module('partyBidApp')
         var activities = Activities[username] || [];
 
         $scope.back_to_list = function () {
-            $location.path('/')
+            $location.path('/activity_list')
         };
         $scope.activities = activities;
 

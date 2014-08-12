@@ -1,8 +1,7 @@
 #encoding: utf-8
 class UsersController < ApplicationController
   protect_from_forgery with: :null_session, if: Proc.new { |c| c.request.format == 'application/json' }
-  # prepend_before_filter :load_session, only: :flash_upload
-  # skip_before_filter :verify_authenticity_token, :only => [:create]
+
   def signup
     @user = User.new
   end
