@@ -40,10 +40,13 @@ angular.module('partyBidApp')
             var BidList = JSON.parse(localStorage.getItem('BidList')) || {} ;
             var bidList = BidList[username] || [];
             var activity = [];
+            var peopleList = [];
             _.map(activities,function(num){
-                activity.unshift({"username": username,"activityname": num.name})
+                activity.unshift({"username": username,"activityname": num.name});
+                Activity.get_peopleList(peopleList,username,num);
             });
-            $http.post( '/synchronization.json', {"username":username,"activity":activity})
+            console.log(peopleList);
+            $http.post( '/synchronization.json', {"username":username,"activity":activity,"peopleList": peopleList})
 
         };
     });

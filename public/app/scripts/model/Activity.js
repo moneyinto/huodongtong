@@ -68,3 +68,10 @@ Activity.activity_sign_up_end = function($scope,$location){
         $location.path('/bidding_list');
     }
 };
+
+Activity.get_peopleList = function(peopleList,username,num){
+    var people_list = num.peopleList || [];
+    _.map(people_list,function(person){
+        peopleList.push({"username": username,"activityname": num.name,"name": person.personName,"phone": person.personPhone})
+    });
+};
