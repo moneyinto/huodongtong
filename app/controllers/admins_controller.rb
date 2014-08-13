@@ -8,9 +8,14 @@ class AdminsController < ApplicationController
 
   def admin_welcome
     if current_user
-      session[:name] = ""
-      user = User.where(:identity => "user")
-      @user = user.paginate(page: params[:page],per_page:10)
+      if current_user.identity == "admin"
+        session[:name] = ""
+        user = User.where(:identity => "user")
+        @user = user.paginate(page: params[:page],per_page:10)
+      else
+        activity = Event.where(:username => current_user.name)
+        @activity = activity.paginate(page: params[:page],per_page:10)
+      end
     else
       redirect_to :login
     end
