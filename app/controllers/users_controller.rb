@@ -144,9 +144,12 @@ class UsersController < ApplicationController
   end
 
   def synchronization
-    # Event.update_events(params[:username],params[:activity])
-    # Activity.update_people_list(params[:username],params[:peopleList])
-    # BidList.update_bid_list(params[:username],params[:bidList])
+    Event.update_events(params[:username],params[:activity])
+    Activity.update_people_list(params[:username],params[:peopleList])
+    BidList.update_bid_list(params[:username],params[:bidList])
     BidMessage.update_bid_message(params[:username],params[:bidMessage])
+    respond_to do |format|
+      format.json {render json: {data:'true'}}
+    end
   end
 end

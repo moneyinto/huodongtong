@@ -51,8 +51,11 @@ angular.module('partyBidApp')
                 bid_list.push({"username": username,"activityname": bid.activityName,"bidname": bid.name,"status": bid.colorStatus});
                 Bidding.get_bidList(bidMessage,username,bid,activities);
             });
-            console.log(bidMessage);
-            $http.post( '/synchronization.json', {"username":username,"activity":activity,"peopleList": peopleList,"bidList": bid_list,"bidMessage":bidMessage})
+            $http.post( '/synchronization.json', {"username":username,"activity":activity,"peopleList": peopleList,"bidList": bid_list,"bidMessage":bidMessage}).success(function (back) {
+                if (back.data == 'true') {
+                    alert("同步成功");
+                }
+            });
 
         };
     });
