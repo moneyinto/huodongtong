@@ -1,0 +1,24 @@
+.panel.panel-default{:style => "width: 95%;margin-left: 35px"}
+  .panel-heading
+    %p{:style => "font-size: 25px"}
+      报名列表
+    %p{:style => "font-size: 15px;position: absolute;right: 50px;top: 110px"}
+      = link_to "竞价列表"
+    - signupmessage = Activity.where(:username => params[:username],:activityname => params[:activityname])
+    - @signupmessage = signupmessage.paginate(page: params[:page],per_page:10)
+  %table.table.text-center
+    %tr
+      %td{:style => "width: 30%"} 编号
+      %td{:style => "width: 30%"} 姓名
+      %td{:style => "width: 40%"} 手机号
+    - if params[:page].to_i == 0
+      - id = 0
+    - else
+      - id = (params[:page].to_i-1)*10
+    - @signupmessage.each do |p|
+      %tr
+        %td{:style => "width: 30%"}= id =id+1
+        %td{:style => "width: 30%"}= p.name
+        %td{:style => "width: 40%"}= p.phone
+.pagination{:style => "position: absolute;right: 30px; "}
+  = will_paginate @signupmessage, {:previous_label => '<<', :next_label => '>>'}

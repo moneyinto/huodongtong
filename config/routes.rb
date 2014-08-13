@@ -17,6 +17,8 @@ Rails.application.routes.draw do
 
   get "/forgot_password_3" => "users#forgot_password_3"
 
+  get "/signuplist" => "users#signuplist"
+
   post "forgot_password_one" => "users#forgot_password_one"
 
   post "forgot_password_two" => "users#forgot_password_two"

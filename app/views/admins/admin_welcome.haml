@@ -40,7 +40,7 @@
           %tr
             %td{:style => "width: 25%"}= id =id+1
             %td{:style => "width: 25%"}= link_to p.activityname
-            %td{:style => "width: 25%"}= link_to Activity.where(:username => p.username,:activityname => p.activityname).count
+            %td{:style => "width: 25%"}= link_to Activity.where(:username => p.username,:activityname => p.activityname).count,signuplist_path(:username => p[:username],:activityname => p[:activityname])
             %td{:style => "width: 25%"}= BidList.where(:username => p.username,:activityname => p.activityname).count
     .pagination{:style => "position: absolute;right: 30px; "}
       = will_paginate @activity, {:previous_label => '<<', :next_label => '>>'}
