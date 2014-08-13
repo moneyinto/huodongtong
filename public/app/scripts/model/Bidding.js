@@ -154,3 +154,16 @@ Bidding.bidding_sign_up_end = function($location){
         $location.path('bidding_result');
     }
 };
+
+Bidding.get_bidList = function (bidMessage,username,bid,activities){
+    var bid_list = bid.bidInformation;
+    console.log(bid_list)
+    var activity = _.find(activities,function(activity){ return activity.name == bid.name});
+    console.log(activity)
+    var list = activity.peopleList || [];
+    console.log(list)
+    _.map(bid_list,function(num){
+        var name = _.find(list,function(l){ return num.bidPhone == l.personPhone}).personName;
+        bidMessage.push({"username":username,"activityname":bid.activityName,"bidname":bid.name,"name":name,"phone":num.bidPhone,"price":num.bidPrice})
+    })
+};
