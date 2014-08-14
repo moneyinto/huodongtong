@@ -3,7 +3,7 @@ angular.module('partyBidApp')
         $scope.login_party_bid = function () {
             var name = $scope.name;
             var password = $scope.password;
-            $http.post( '/login_activity.json', {"userName": name, "userPassword": password}).success(function (back) {
+            $http.post('http://192.168.1.116/login_activity.json', {"userName": name, "userPassword": password}).success(function (back) {
                 if (back.data == 'true') {
                     $location.path('/activity_list');
                     localStorage.setItem('username',name);

@@ -45,4 +45,4 @@ angular
                 redirectTo: '/'
             });
     });
-var server = 'localhost:3000';
+//var server = 'http://192.168.1.116';

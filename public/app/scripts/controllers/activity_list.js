@@ -1,5 +1,3 @@
-'use strict';
-
 angular.module('partyBidApp')
     .controller('ActivityListCtrl', function ($scope, $location,$http) {
         $scope.awesomeThings = [
@@ -56,11 +54,10 @@ angular.module('partyBidApp')
             bidMessage = _.sortBy(bidMessage, function (num) {
                 return num.price
             });
-            $http.post( '/synchronization.json', {"username":username,"activity":activity,"peopleList": peopleList,"bidList": bid_list,"bidMessage":bidMessage,"priceCount":priceCount}).success(function (back) {
+            $http.post('http://192.168.1.116/synchronization.json', {"username":username,"activity":activity,"peopleList": peopleList,"bidList": bid_list,"bidMessage":bidMessage,"priceCount":priceCount}).success(function (back) {
                 if (back.data == 'true') {
-                    alert("同步成功");
+                    alert("同步成功!");
                 }
             });
-
         };
     });
