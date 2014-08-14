@@ -14,7 +14,7 @@
           %a
             出价列表
         %li
-          =link_to "价格统计"
+          =link_to "价格统计",pricecount_path(:username =>  params[:username],:activityname => params[:activityname],:bidname => params[:bidname])
     %tr
       %td{:style => "width: 22%"} 编号
       %td{:style => "width: 22%"} 姓名

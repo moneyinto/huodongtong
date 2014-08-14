@@ -23,6 +23,8 @@ Rails.application.routes.draw do
 
   get "/pricelist" => "users#pricelist"
 
+  get "/pricecount" => "users#pricecount"
+
   post "forgot_password_one" => "users#forgot_password_one"
 
   post "forgot_password_two" => "users#forgot_password_two"
