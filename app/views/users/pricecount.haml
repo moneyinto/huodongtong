@@ -1,12 +1,22 @@
 %ol.breadcrumb
   .winner(align = 'center')
-    -#-if flash.now[:bidding]
-    -#  活动正在进行中...
-    -#-if flash.now[:success]
-    -#
-    -#-if flash.now[:fail]
-    -#  本次竞价无人胜出
-  .panel.panel-default{:style => "width: 95%;margin-left: 35px"}
+    - status = BidList.where(:username => params[:username],:activityname => params[:activityname],:bidname => params[:bidname])
+    - pricecount = PriceCount.where(:username => params[:username],:activityname => params[:activityname],:bidname => params[:bidname])
+    -if status.find_by_status("1") && pricecount.find_by_count("1")
+      - success = pricecount.where(:count => 1).first
+      - people = BidMessage.where(:username =>  params[:username],:activityname => params[:activityname],:bidname => params[:bidname],:price => success.price).first
+      %p
+        = "获胜者:" + people.name
+      %p
+        = "出价:" + people.price
+      %p
+        = "手机号:" + people.phone
+    -else
+      -if status.find_by_status("0")
+        活动正在进行中...
+      -else
+        本次竞价无人胜出
+.panel.panel-default{:style => "width: 95%;margin-left: 35px"}
   %table.table.text-center
     %thead
       %ul.nav.nav-tabs.nav-justified
@@ -18,7 +28,6 @@
     %tr
       %td{:style => "width: 50%"} 价格/元
       %td{:style => "width: 50%"} 人数
-      - pricecount = PriceCount.where(:username =>  params[:username],:activityname => params[:activityname],:bidname => params[:bidname])
       - @pricecount = pricecount.paginate(page: params[:page],per_page:10)
     - @pricecount.each do |p|
       %tr
