@@ -6,8 +6,9 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
-  def login
-
+  def welcome
+    activity = Event.where(:username => current_user.name)
+    @activity = activity.paginate(page: params[:page],per_page:10)
   end
 
   def adduser
@@ -44,7 +45,11 @@ class UsersController < ApplicationController
     user = User.find_by_name(params[:name])
     if user && user.authenticate(params[:password])
       cookies.permanent[:token] = user.token
-      redirect_to :admin_welcome
+      if user.identity == "admin"
+        redirect_to :admin_welcome
+      else
+        redirect_to :welcome
+      end
     else
       flash[:error] = "用户名不存在或密码错误"
       redirect_to :login

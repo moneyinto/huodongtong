@@ -7,5 +7,10 @@ class ApplicationController < ActionController::Base
     @current_user ||= User.find_by_token(cookies[:token]) if cookies[:token]
   end
 
+  def current_user_two
+    @current_user_two ||= User.find_by_token(cookies[:token_two]) if cookies[:token_two]
+  end
+
   helper_method :current_user
+  helper_method :current_user_two
 end

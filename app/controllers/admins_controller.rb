@@ -8,14 +8,9 @@ class AdminsController < ApplicationController
 
   def admin_welcome
     if current_user
-      if current_user.identity == "admin"
         session[:name] = ""
         user = User.where(:identity => "user")
         @user = user.paginate(page: params[:page],per_page:10)
-      else
-        activity = Event.where(:username => current_user.name)
-        @activity = activity.paginate(page: params[:page],per_page:10)
-      end
     else
       redirect_to :login
     end
@@ -32,6 +27,14 @@ class AdminsController < ApplicationController
     else
       flash[:error] = "密码输入不一致"
       redirect_to :password
+    end
+  end
+
+  def user_two
+    user = User.find_by_name(params[:username_two])
+    if user
+      cookies.permanent[:token_two] = user.token
+      redirect_to :admin_welcome
     end
   end
 end

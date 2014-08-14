@@ -16,31 +16,31 @@
         - @user.each do |p|
           %tr
             %td{:style => "width: 350px"}= id =id+1
-            %td{:style => "width: 350px"}= p.name
+            %td{:style => "width: 350px"}= link_to p.name,user_two_path(:username_two => p[:name])
             %td
               = link_to "删除", delete_user_path(:delete_name => p[:name]), data: {confirm: "确定要删除"+p[:name]+"这个用户？"}, method: "delete"
               \&nbsp&nbsp&nbsp&nbsp#{link_to "修改密码", password_path(:change_name => p[:name])}
     .pagination{:style => "position: absolute;right: 30px; "}
       = will_paginate @user, {:previous_label => '<<', :next_label => '>>'}
-  - else
-    .panel.panel-default{:style => "width: 95%;margin-left: 35px"}
-      .panel-heading{:style => "font-size: 25px"}
-        活动信息
-      %table.table.text-center
-        %tr
-          %td{:style => "width: 25%"} 编号
-          %td{:style => "width: 25%"} 活动名称
-          %td{:style => "width: 25%"} 报名人数
-          %td{:style => "width: 25%"} 竞价次数
-        - if params[:page].to_i == 0
-          - id = 0
-        - else
-          - id = (params[:page].to_i-1)*10
-        - @activity.each do |p|
-          %tr
-            %td{:style => "width: 25%"}= id =id+1
-            %td{:style => "width: 25%"}= link_to p.activityname,bidlist_path(:username => p[:username],:activityname => p[:activityname])
-            %td{:style => "width: 25%"}= link_to Activity.where(:username => p.username,:activityname => p.activityname).count,signuplist_path(:username => p[:username],:activityname => p[:activityname])
-            %td{:style => "width: 25%"}= BidList.where(:username => p.username,:activityname => p.activityname).count
-    .pagination{:style => "position: absolute;right: 30px; "}
-      = will_paginate @activity, {:previous_label => '<<', :next_label => '>>'}
+  -#- else
+  -#  .panel.panel-default{:style => "width: 95%;margin-left: 35px"}
+  -#    .panel-heading{:style => "font-size: 25px"}
+  -#      活动信息
+  -#    %table.table.text-center
+  -#      %tr
+  -#        %td{:style => "width: 25%"} 编号
+  -#        %td{:style => "width: 25%"} 活动名称
+  -#        %td{:style => "width: 25%"} 报名人数
+  -#        %td{:style => "width: 25%"} 竞价次数
+  -#      - if params[:page].to_i == 0
+  -#        - id = 0
+  -#      - else
+  -#        - id = (params[:page].to_i-1)*10
+  -#      - @activity.each do |p|
+  -#        %tr
+  -#          %td{:style => "width: 25%"}= id =id+1
+  -#          %td{:style => "width: 25%"}= link_to p.activityname,bidlist_path(:username => p[:username],:activityname => p[:activityname])
+  -#          %td{:style => "width: 25%"}= link_to Activity.where(:username => p.username,:activityname => p.activityname).count,signuplist_path(:username => p[:username],:activityname => p[:activityname])
+  -#          %td{:style => "width: 25%"}= BidList.where(:username => p.username,:activityname => p.activityname).count
+  -#  .pagination{:style => "position: absolute;right: 30px; "}
+  -#    = will_paginate @activity, {:previous_label => '<<', :next_label => '>>'}
