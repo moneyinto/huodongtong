@@ -19,6 +19,8 @@ Rails.application.routes.draw do
 
   get "/signuplist" => "users#signuplist"
 
+  get "/bidlist" => "users#bidlist"
+
   post "forgot_password_one" => "users#forgot_password_one"
 
   post "forgot_password_two" => "users#forgot_password_two"

@@ -3,7 +3,7 @@
     %p{:style => "font-size: 25px"}
       报名列表
     %p{:style => "font-size: 15px;position: absolute;right: 50px;top: 110px"}
-      = link_to "竞价列表"
+      = link_to "竞价列表",bidlist_path(:username =>  params[:username],:activityname => params[:activityname])
     - signupmessage = Activity.where(:username => params[:username],:activityname => params[:activityname])
     - @signupmessage = signupmessage.paginate(page: params[:page],per_page:10)
   %table.table.text-center
