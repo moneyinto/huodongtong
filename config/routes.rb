@@ -25,6 +25,8 @@ Rails.application.routes.draw do
 
   get "/pricecount" => "users#pricecount"
 
+  get "user_two" => "admins#user_two"
+
   post "user_two" => "admins#user_two"
 
   post "forgot_password_one" => "users#forgot_password_one"
@@ -44,6 +46,8 @@ Rails.application.routes.draw do
   delete "delete_user" => "users#delete_user", :as => "delete_user"
 
   delete "logout" => "users#logout", :as => "logout"
+
+  delete "logout_two" => "users#logout_two"
 
   resources :users, only: [:create]
 

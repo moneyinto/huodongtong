@@ -41,6 +41,11 @@ class UsersController < ApplicationController
     redirect_to :login
   end
 
+  def logout_two
+    cookies.delete(:token_two)
+    redirect_to :admin_welcome
+  end
+
   def create_login_session
     user = User.find_by_name(params[:name])
     if user && user.authenticate(params[:password])

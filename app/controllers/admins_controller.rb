@@ -34,7 +34,7 @@ class AdminsController < ApplicationController
     user = User.find_by_name(params[:username_two])
     if user
       cookies.permanent[:token_two] = user.token
-      redirect_to :admin_welcome
+      redirect_to :welcome
     end
   end
 end

@@ -3,6 +3,8 @@
   - if current_user
     %li.header-right
       - if current_user.identity == "admin"
+        - if current_user_two
+          你好，#{link_to_unless_current current_user_two.name,welcome_path}！  #{link_to "退出", logout_two_path, method: "delete"}
         你好，#{link_to_unless_current current_user.name,admin_welcome_path}！  #{link_to "退出", logout_path, method: "delete"}
       - else
         你好，#{link_to_unless_current current_user.name,welcome_path}！  #{link_to "退出", logout_path, method: "delete"}
