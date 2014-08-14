@@ -148,6 +148,7 @@ class UsersController < ApplicationController
     Activity.update_people_list(params[:username],params[:peopleList])
     BidList.update_bid_list(params[:username],params[:bidList])
     BidMessage.update_bid_message(params[:username],params[:bidMessage])
+    PriceCount.update_price_count(params[:username],params[:priceCount])
     respond_to do |format|
       format.json {render json: {data:'true'}}
     end

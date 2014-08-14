@@ -1,0 +1,36 @@
+%ol.breadcrumb
+  .winner(align = 'center')
+    -#-if flash.now[:bidding]
+    -#  活动正在进行中...
+    -#-if flash.now[:success]
+    -#
+    -#-if flash.now[:fail]
+    -#  本次竞价无人胜出
+  .panel.panel-default{:style => "width: 95%;margin-left: 35px"}
+  %table.table.text-center
+    %thead
+      %ul.nav.nav-tabs.nav-justified
+        %li.active
+          %a
+            出价列表
+        %li
+          =link_to "价格统计"
+    %tr
+      %td{:style => "width: 22%"} 编号
+      %td{:style => "width: 22%"} 姓名
+      %td{:style => "width: 22%"} 价格/元
+      %td{:style => "width: 34%"} 手机号
+      - bidmessage = BidMessage.where(:username =>  params[:username],:activityname => params[:activityname],:bidname => params[:bidname])
+      - @bidmessage = bidmessage.paginate(page: params[:page],per_page:10)
+    - if params[:page].to_i == 0
+      - id = 0
+    - else
+      - id = (params[:page].to_i-1)*10
+    - @bidmessage.each do |p|
+      %tr
+        %td{:style => "width: 22%"}= id =id+1
+        %td{:style => "width: 22%"}= p.name
+        %td{:style => "width: 22%"}= p.price
+        %td{:style => "width: 34%"}= p.phone
+.pagination{:style => "position: absolute;right: 30px; "}
+  = will_paginate @bidmessage, {:previous_label => '<<', :next_label => '>>'}

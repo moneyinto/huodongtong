@@ -18,7 +18,7 @@
     - @bidlist.each do |p|
       %tr
         %td{:style => "width: 30%"}= id =id+1
-        %td{:style => "width: 30%"}= link_to p.bidname
+        %td{:style => "width: 30%"}= link_to p.bidname,pricelist_path(:username =>  params[:username],:activityname => params[:activityname],:bidname => p[:bidname])
         %td{:style => "width: 40%"}
           = BidMessage.where(:username =>  params[:username],:activityname => params[:activityname],:bidname => p.bidname).count
           = "/"

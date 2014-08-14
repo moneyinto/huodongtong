@@ -157,10 +157,23 @@ Bidding.bidding_sign_up_end = function($location){
 
 Bidding.get_bidList = function (bidMessage,username,bid,activities){
     var bid_list = bid.bidInformation;
-    var activity = _.find(activities,function(activity){ return activity.name == bid.name});
+    var activity = _.find(activities,function(activity){ return activity.name == bid.activityName});
     var list = activity.peopleList || [];
     _.map(bid_list,function(num){
         var name = _.find(list,function(l){ return num.bidPhone == l.personPhone}).personName;
-        bidMessage.push({"username":username,"activityname":bid.activityName,"bidname":bid.name,"name":name,"phone":num.bidPhone,"price":num.bidPrice})
-    })
+        bidMessage.push({"username":username,"activityname":bid.activityName,"bidname":bid.name,"name":name,"phone":num.bidPhone,"price": JSON.parse(num.bidPrice)})
+    });
+};
+
+Bidding.get_price_count = function(priceCount,bidMessage,bid,username){
+    var evens = _.filter(bidMessage,function(num){ return num.activityname == bid.activityName && num.bidname == bid.name});
+    var even = _.countBy(evens, function (num) {
+        return num.price
+    });
+    var eve = _.map(even, function (value, key) {
+        return {'price': key, 'count': value}
+    });
+    _.map(eve,function(num){
+        priceCount.push({"username":username,"activityname":bid.activityName,"bidname":bid.name,"price": num.price, "count": num.count})
+    });
 };
