@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="308e38cd-9f4d-48d0-a178-89ca19f41dc8" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/users/pricecount.haml" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/shared/_flash_message.erb" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/shared/_header.erb" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/users/addUser.erb" afterPath="" />
@@ -12,9 +11,7 @@
       <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/users/password.erb" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/users/signup.erb" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/users/welcome.erb" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/pricelist.haml" afterPath="$PROJECT_DIR$/app/views/users/pricelist.haml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/routes.rb" afterPath="$PROJECT_DIR$/config/routes.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/bidlist.haml" afterPath="$PROJECT_DIR$/app/views/users/bidlist.haml" />
     </list>
     <ignored path="huodongtong.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -57,11 +54,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pricecount.haml" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="pricecount.haml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/users/pricecount.haml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6708185" vertical-offset="19" max-vertical-offset="594">
-              <caret line="22" column="17" selection-start-line="22" selection-start-column="17" selection-end-line="22" selection-end-column="17" />
+            <state vertical-scroll-proportion="-11.962963" vertical-offset="19" max-vertical-offset="594">
+              <caret line="19" column="36" selection-start-line="19" selection-start-column="36" selection-end-line="19" selection-end-column="36" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="bidlist.haml" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/views/users/bidlist.haml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.6405694" vertical-offset="0" max-vertical-offset="576">
+              <caret line="20" column="35" selection-start-line="20" selection-start-column="35" selection-end-line="20" selection-end-column="35" />
               <folding />
             </state>
           </provider>
@@ -72,16 +79,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0" vertical-offset="707" max-vertical-offset="1296">
               <caret line="66" column="0" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="bidding_result.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/app/scripts/controllers/bidding_result.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="205" max-vertical-offset="936">
-              <caret line="31" column="47" selection-start-line="31" selection-start-column="47" selection-end-line="31" selection-end-column="47" />
               <folding />
             </state>
           </provider>
@@ -192,7 +189,6 @@
         <option value="dbtable:/51f19673/4847a1cb-600c-4b2b-8e0d-1f8f72ebeef8/..bid_lists" />
         <option value="dbtable:/51f19673/4847a1cb-600c-4b2b-8e0d-1f8f72ebeef8/..bid_messages" />
         <option value="$PROJECT_DIR$/app/views/users/bidmessage.haml" />
-        <option value="$PROJECT_DIR$/app/views/users/bidlist.haml" />
         <option value="dbtable:/51f19673/4847a1cb-600c-4b2b-8e0d-1f8f72ebeef8/..price_counts" />
         <option value="$PROJECT_DIR$/app/models/price_count.rb" />
         <option value="$PROJECT_DIR$/app/controllers/users_controller.rb" />
@@ -201,6 +197,7 @@
         <option value="$PROJECT_DIR$/config/routes.rb" />
         <option value="$PROJECT_DIR$/app/views/users/pricelist.haml" />
         <option value="$PROJECT_DIR$/app/views/users/pricecount.haml" />
+        <option value="$PROJECT_DIR$/app/views/users/bidlist.haml" />
       </list>
     </option>
   </component>
@@ -1121,14 +1118,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/users/bidlist.haml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.6666665" vertical-offset="0" max-vertical-offset="576">
-          <caret line="10" column="36" selection-start-line="10" selection-start-column="36" selection-end-line="10" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/app/scripts/controllers/bidding_count.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="64" max-vertical-offset="666">
@@ -1233,8 +1222,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/users/pricecount.haml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6708185" vertical-offset="19" max-vertical-offset="594">
-          <caret line="22" column="17" selection-start-line="22" selection-start-column="17" selection-end-line="22" selection-end-column="17" />
+        <state vertical-scroll-proportion="-11.962963" vertical-offset="19" max-vertical-offset="594">
+          <caret line="19" column="36" selection-start-line="19" selection-start-column="36" selection-end-line="19" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/users/bidlist.haml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6405694" vertical-offset="0" max-vertical-offset="576">
+          <caret line="20" column="35" selection-start-line="20" selection-start-column="35" selection-end-line="20" selection-end-column="35" />
           <folding />
         </state>
       </provider>
