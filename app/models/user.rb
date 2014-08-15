@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   validates :forget_answer, :presence => true
   validates :name,:uniqueness => {:case_sensitive => false}
   has_secure_password
+
   def generate_token(column)
     begin
       self[column] = SecureRandom.urlsafe_base64

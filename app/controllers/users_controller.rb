@@ -25,20 +25,28 @@ class UsersController < ApplicationController
     params[:user][:identity] = "user"
     @user = User.new(params[:user])
     if current_user
-      if current_user.identity == "admin"
-        if @user.save
-          redirect_to :admin_welcome
-        else
-          render :adduser
-        end
-      end
+      admin_add_user
     else
+      user_sign_up
+    end
+  end
+
+  def admin_add_user
+    if current_user.identity == "admin"
       if @user.save
-        cookies.permanent[:token] = @user.token
-        redirect_to :welcome
+        redirect_to :admin_welcome
       else
-        render :signup
+        render :adduser
       end
+    end
+  end
+
+  def user_sign_up
+    if @user.save
+      cookies.permanent[:token] = @user.token
+      redirect_to :welcome
+    else
+      render :signup
     end
   end
 
