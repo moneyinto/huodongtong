@@ -7,10 +7,18 @@ class UsersController < ApplicationController
   end
 
   def welcome
+    admin_operation
+    user_operation
+  end
+
+  def admin_operation
     if current_user.identity == "admin" && current_user_two
       activity = Event.where(:username => current_user_two.name)
       @activity = activity.paginate(page: params[:page],per_page:10)
     end
+  end
+
+  def user_operation
     if current_user.identity == "user"
       activity = Event.where(:username => current_user.name)
       @activity = activity.paginate(page: params[:page],per_page:10)
