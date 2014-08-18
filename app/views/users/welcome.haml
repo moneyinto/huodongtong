@@ -1,7 +1,9 @@
+= render 'shared/header'
 .panel.panel-default{:style => "width: 95%;margin-left: 35px"}
   .panel-heading{:style => "font-size: 25px"}
     活动信息
-    - if Message.first[:status] == "1"
+    - message = Message.first
+    - if message.status == "1"
       = link_to "同步展示",show_path,:class => "btn btn-default",:style => "position: absolute;right: 50px;"
     - else
       = link_to "同步展示",welcome_path,:class => "btn btn-default",:style => "position: absolute;right: 50px;"

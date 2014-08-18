@@ -31,7 +31,7 @@ angular.module('partyBidApp')
         };
 
         $scope.start = function () {
-            $http.post('/start.json');
+            $http.post('/start.json',{"name":JSON.parse(localStorage.getItem('activityName'))});
             Bidding.bidding_create(bidList,activityName);
             $location.path('/bidding_sign_up');
         };

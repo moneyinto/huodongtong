@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140818102105) do
+ActiveRecord::Schema.define(version: 20140818115205) do
 
   create_table "activities", force: true do |t|
     t.string   "username"
@@ -59,6 +59,7 @@ ActiveRecord::Schema.define(version: 20140818102105) do
   end
 
   create_table "messages", force: true do |t|
+    t.string   "name"
     t.string   "status"
     t.datetime "created_at"
     t.datetime "updated_at"

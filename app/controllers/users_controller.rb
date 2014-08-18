@@ -202,14 +202,16 @@ class UsersController < ApplicationController
   end
 
   def show
-    bid = Bid.limit(10)
+    @bid_count = Bid.all
+    bid = Bid.where(:count => 1).limit(10)
     @bid = bid
     render :show
   end
 
   def start
+    Bid.delete_all
     Message.delete_all
-    Message.create({:status => "1"})
+    Message.create({:name => params[:name],:status => "1"})
     respond_to do |format|
       format.json {render json: {data:'true'}}
     end
@@ -217,7 +219,7 @@ class UsersController < ApplicationController
 
   def end
     Message.delete_all
-    Message.create({:status => "0"})
+    Message.create({:name => params[:name],:status => "0"})
     respond_to do |format|
       format.json {render json: {data:'true'}}
     end

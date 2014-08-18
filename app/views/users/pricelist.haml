@@ -1,3 +1,4 @@
+= render 'shared/header'
 %ol.breadcrumb
   .winner(align = 'center')
     - status = BidList.where(:username => params[:username],:activityname => params[:activityname],:bidname => params[:bidname])

@@ -1,3 +1,3 @@
 class Message < ActiveRecord::Base
-  attr_accessible :status
+  attr_accessible :name,:status
 end
