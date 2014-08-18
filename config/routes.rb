@@ -49,6 +49,8 @@ Rails.application.routes.draw do
 
   post "start" => "users#start"
 
+  post "end" => "users#end"
+
   delete "delete_user" => "users#delete_user", :as => "delete_user"
 
   delete "logout" => "users#logout", :as => "logout"

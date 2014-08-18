@@ -214,4 +214,12 @@ class UsersController < ApplicationController
       format.json {render json: {data:'true'}}
     end
   end
+
+  def end
+    Message.delete_all
+    Message.create({:status => "0"})
+    respond_to do |format|
+      format.json {render json: {data:'true'}}
+    end
+  end
 end

@@ -145,12 +145,13 @@ Bidding.bidding_information = function($scope,success){
     }, 3000);
 };
 
-Bidding.bidding_sign_up_end = function($location){
+Bidding.bidding_sign_up_end = function($location,$http){
     var username = localStorage.getItem('username');
     var BidList = JSON.parse(localStorage.getItem('BidList')) || {} ;
     var bidList = BidList[username] || [];
     if(confirm("确定要结束本次竞价？")){
         localStorage.removeItem('bid');
+        $http.post('/end.json');
         Bidding.end_success(bidList);
         $location.path('bidding_result');
     }

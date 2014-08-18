@@ -22,7 +22,7 @@ angular.module('partyBidApp')
         };
 
         $scope.end = function(){
-            Bidding.bidding_sign_up_end($location);
+            Bidding.bidding_sign_up_end($location,$http);
         };
 
         $scope.fresh = function () {
