@@ -51,6 +51,8 @@ Rails.application.routes.draw do
 
   post "end" => "users#end"
 
+  post "synchronous_show" => "users#synchronous_show"
+
   delete "delete_user" => "users#delete_user", :as => "delete_user"
 
   delete "logout" => "users#logout", :as => "logout"

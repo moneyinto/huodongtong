@@ -224,4 +224,13 @@ class UsersController < ApplicationController
       format.json {render json: {data:'true'}}
     end
   end
+
+  def synchronous_show
+    message = Message.first
+    if message.status == "1"
+      redirect_to :show
+    else
+      redirect_to :welcome
+    end
+  end
 end

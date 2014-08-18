@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="308e38cd-9f4d-48d0-a178-89ca19f41dc8" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/models/message.rb" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/shared/_flash_message.erb" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/shared/_header.erb" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/users/addUser.erb" afterPath="" />
@@ -12,29 +11,9 @@
       <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/users/password.erb" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/users/signup.erb" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/users/welcome.erb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/db/migrate/20140818102105_create_messages.rb" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.ids" afterPath="$PROJECT_DIR$/.idea/dataSources.ids" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/adduser.haml" afterPath="$PROJECT_DIR$/app/views/users/adduser.haml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/admins/admin_welcome.haml" afterPath="$PROJECT_DIR$/app/views/admins/admin_welcome.haml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/layouts/application.erb" afterPath="$PROJECT_DIR$/app/views/layouts/application.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/bid.rb" afterPath="$PROJECT_DIR$/app/models/bid.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/app/scripts/controllers/bidding_list.js" afterPath="$PROJECT_DIR$/public/app/scripts/controllers/bidding_list.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/bidlist.haml" afterPath="$PROJECT_DIR$/app/views/users/bidlist.haml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/forgot_password_1.haml" afterPath="$PROJECT_DIR$/app/views/users/forgot_password_1.haml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/forgot_password_2.haml" afterPath="$PROJECT_DIR$/app/views/users/forgot_password_2.haml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/forgot_password_3.haml" afterPath="$PROJECT_DIR$/app/views/users/forgot_password_3.haml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/login.haml" afterPath="$PROJECT_DIR$/app/views/users/login.haml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/admins/password.haml" afterPath="$PROJECT_DIR$/app/views/admins/password.haml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/pricecount.haml" afterPath="$PROJECT_DIR$/app/views/users/pricecount.haml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/pricelist.haml" afterPath="$PROJECT_DIR$/app/views/users/pricelist.haml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/schema.rb" afterPath="$PROJECT_DIR$/db/schema.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/show.haml" afterPath="$PROJECT_DIR$/app/views/users/show.haml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/signup.haml" afterPath="$PROJECT_DIR$/app/views/users/signup.haml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/signuplist.haml" afterPath="$PROJECT_DIR$/app/views/users/signuplist.haml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/routes.rb" afterPath="$PROJECT_DIR$/config/routes.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/users_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/users_controller.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/welcome.haml" afterPath="$PROJECT_DIR$/app/views/users/welcome.haml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="huodongtong.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -70,8 +49,8 @@
       <file leaf-file-name="routes.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config/routes.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="327" max-vertical-offset="2196">
-              <caret line="29" column="28" selection-start-line="29" selection-start-column="28" selection-end-line="29" selection-end-column="28" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="692" max-vertical-offset="2232">
+              <caret line="53" column="52" selection-start-line="53" selection-start-column="52" selection-end-line="53" selection-end-column="52" />
               <folding />
             </state>
           </provider>
@@ -87,21 +66,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="application.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/app/scripts/controllers/application.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="846">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="pricelist.haml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/users/pricelist.haml">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="936">
               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="24" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="admin_welcome.haml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/admins/admin_welcome.haml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-14.0" vertical-offset="0" max-vertical-offset="936">
+              <caret line="21" column="133" selection-start-line="21" selection-start-column="117" selection-end-line="21" selection-end-column="133" />
               <folding />
             </state>
           </provider>
@@ -130,28 +109,28 @@
       <file leaf-file-name="users_controller.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/users_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="3449" max-vertical-offset="4194">
-              <caret line="197" column="11" selection-start-line="197" selection-start-column="11" selection-end-line="197" selection-end-column="11" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="3610" max-vertical-offset="4356">
+              <caret line="232" column="26" selection-start-line="232" selection-start-column="26" selection-end-line="232" selection-end-column="26" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="bid.rb" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="bid.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/models/bid.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.14950167" vertical-offset="0" max-vertical-offset="602">
-              <caret line="5" column="20" selection-start-line="5" selection-start-column="20" selection-end-line="5" selection-end-column="20" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="360">
+              <caret line="11" column="7" selection-start-line="11" selection-start-column="7" selection-end-line="11" selection-end-column="7" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="welcome.haml" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="welcome.haml" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/views/users/welcome.haml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-2.6666667" vertical-offset="0" max-vertical-offset="576">
-              <caret line="4" column="16" selection-start-line="4" selection-start-column="16" selection-end-line="4" selection-end-column="29" />
+            <state vertical-scroll-proportion="0.12811388" vertical-offset="0" max-vertical-offset="562">
+              <caret line="4" column="129" selection-start-line="4" selection-start-column="129" selection-end-line="4" selection-end-column="129" />
               <folding />
             </state>
           </provider>
@@ -213,14 +192,14 @@
         <option value="$PROJECT_DIR$/app/views/users/pricelist.haml" />
         <option value="$PROJECT_DIR$/app/views/users/signup.haml" />
         <option value="$PROJECT_DIR$/app/views/users/signuplist.haml" />
-        <option value="$PROJECT_DIR$/app/views/users/welcome.haml" />
         <option value="dbtable:/51f19673/4847a1cb-600c-4b2b-8e0d-1f8f72ebeef8/..messages" />
         <option value="dbtable:/51f19673/4847a1cb-600c-4b2b-8e0d-1f8f72ebeef8/..bids" />
-        <option value="$PROJECT_DIR$/app/controllers/users_controller.rb" />
         <option value="$PROJECT_DIR$/app/views/users/show_over.haml" />
         <option value="$PROJECT_DIR$/app/views/users/show.haml" />
-        <option value="$PROJECT_DIR$/config/routes.rb" />
         <option value="$PROJECT_DIR$/app/models/bid.rb" />
+        <option value="$PROJECT_DIR$/config/routes.rb" />
+        <option value="$PROJECT_DIR$/app/controllers/users_controller.rb" />
+        <option value="$PROJECT_DIR$/app/views/users/welcome.haml" />
       </list>
     </option>
   </component>
@@ -927,6 +906,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="154" max-vertical-offset="828">
           <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1022,13 +1002,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-6.0" vertical-offset="0" max-vertical-offset="360">
           <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/admins/admin_welcome.haml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="936">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="24" />
         </state>
       </provider>
     </entry>
@@ -1174,10 +1147,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/users/welcome.haml">
+    <entry file="file://$PROJECT_DIR$/app/views/users/show.haml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.6666667" vertical-offset="0" max-vertical-offset="576">
-          <caret line="4" column="16" selection-start-line="4" selection-start-column="16" selection-end-line="4" selection-end-column="29" />
+        <state vertical-scroll-proportion="-5.296296" vertical-offset="307" max-vertical-offset="882">
+          <caret line="25" column="57" selection-start-line="25" selection-start-column="57" selection-end-line="25" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/bid.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="360">
+          <caret line="11" column="7" selection-start-line="11" selection-start-column="7" selection-end-line="11" selection-end-column="7" />
           <folding />
         </state>
       </provider>
@@ -1190,34 +1171,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/routes.rb">
+    <entry file="file://$PROJECT_DIR$/app/views/admins/admin_welcome.haml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="327" max-vertical-offset="2196">
-          <caret line="29" column="28" selection-start-line="29" selection-start-column="28" selection-end-line="29" selection-end-column="28" />
+        <state vertical-scroll-proportion="-14.0" vertical-offset="0" max-vertical-offset="936">
+          <caret line="21" column="133" selection-start-line="21" selection-start-column="117" selection-end-line="21" selection-end-column="133" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/users/show.haml">
+    <entry file="file://$PROJECT_DIR$/config/routes.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.296296" vertical-offset="307" max-vertical-offset="882">
-          <caret line="25" column="57" selection-start-line="25" selection-start-column="57" selection-end-line="25" selection-end-column="57" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="692" max-vertical-offset="2232">
+          <caret line="53" column="52" selection-start-line="53" selection-start-column="52" selection-end-line="53" selection-end-column="52" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/users_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="3449" max-vertical-offset="4194">
-          <caret line="197" column="11" selection-start-line="197" selection-start-column="11" selection-end-line="197" selection-end-column="11" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="3610" max-vertical-offset="4356">
+          <caret line="232" column="26" selection-start-line="232" selection-start-column="26" selection-end-line="232" selection-end-column="26" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/bid.rb">
+    <entry file="file://$PROJECT_DIR$/app/views/users/welcome.haml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.14950167" vertical-offset="0" max-vertical-offset="602">
-          <caret line="5" column="20" selection-start-line="5" selection-start-column="20" selection-end-line="5" selection-end-column="20" />
+        <state vertical-scroll-proportion="0.12811388" vertical-offset="0" max-vertical-offset="562">
+          <caret line="4" column="129" selection-start-line="4" selection-start-column="129" selection-end-line="4" selection-end-column="129" />
           <folding />
         </state>
       </provider>
