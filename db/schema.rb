@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140818090323) do
+ActiveRecord::Schema.define(version: 20140818102105) do
 
   create_table "activities", force: true do |t|
     t.string   "username"
@@ -54,6 +54,12 @@ ActiveRecord::Schema.define(version: 20140818090323) do
   create_table "events", force: true do |t|
     t.string   "username"
     t.string   "activityname"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "messages", force: true do |t|
+    t.string   "status"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

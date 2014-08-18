@@ -47,7 +47,7 @@ Rails.application.routes.draw do
 
   post "synchronous_bid" => "users#synchronous_bid"
 
-  # get "synchronous_bid" => "users#synchronous_bid"
+  post "start" => "users#start"
 
   delete "delete_user" => "users#delete_user", :as => "delete_user"
 

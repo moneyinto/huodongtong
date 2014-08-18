@@ -206,4 +206,12 @@ class UsersController < ApplicationController
     @bid = bid
     render :show
   end
+
+  def start
+    Message.delete_all
+    Message.create({:status => "1"})
+    respond_to do |format|
+      format.json {render json: {data:'true'}}
+    end
+  end
 end

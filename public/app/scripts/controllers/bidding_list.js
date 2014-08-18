@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('partyBidApp')
-    .controller('BiddingListCtrl', function ($scope, $location) {
+    .controller('BiddingListCtrl', function ($scope, $location,$http) {
         $scope.awesomeThings = [
             'HTML5 Boilerplate',
             'AngularJS',
@@ -31,6 +31,7 @@ angular.module('partyBidApp')
         };
 
         $scope.start = function () {
+            $http.post('/start.json');
             Bidding.bidding_create(bidList,activityName);
             $location.path('/bidding_sign_up');
         };
