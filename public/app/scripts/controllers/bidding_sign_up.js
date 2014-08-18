@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('partyBidApp')
-    .controller('BiddingSignUpCtrl', function ($scope, $location) {
+    .controller('BiddingSignUpCtrl', function ($scope, $location,$http) {
         $scope.awesomeThings = [
             'HTML5 Boilerplate',
             'AngularJS',
@@ -33,4 +33,8 @@ angular.module('partyBidApp')
         };
 
         $scope.fresh();
+        $scope.transmission = function(){
+            var bid = JSON.parse(localStorage.getItem('bid'));
+            $http.post('/synchronous_bid.json',{"bid": bid})
+        }
     });

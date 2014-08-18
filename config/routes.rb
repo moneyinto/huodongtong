@@ -27,6 +27,8 @@ Rails.application.routes.draw do
 
   get "user_two" => "admins#user_two"
 
+  get "show" => "users#show"
+
   post "user_two" => "admins#user_two"
 
   post "forgot_password_one" => "users#forgot_password_one"
@@ -42,6 +44,10 @@ Rails.application.routes.draw do
   post "login_activity"  => "users#login_activity"
 
   post "synchronization" =>  "users#synchronization"
+
+  post "synchronous_bid" => "users#synchronous_bid"
+
+  # get "synchronous_bid" => "users#synchronous_bid"
 
   delete "delete_user" => "users#delete_user", :as => "delete_user"
 

@@ -1,0 +1,9 @@
+.panel.panel-default{:style => "width: 95%;margin-left: 35px"}
+  %table.table.text-center
+    %tr
+      %td{:style => "width: 50%"} 姓名
+      %td{:style => "width: 50%"} 电话
+    - @bid.each do |p|
+      %tr
+        %td{:style => "width: 50%"}= p.name
+        %td{:style => "width: 50%"}= p.phone

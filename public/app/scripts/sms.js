@@ -19,7 +19,7 @@ var native_accessor = {
 
         var activities = Activities[username] || [];
 
-        var BidList = JSON.parse(localStorage.getItem('BidList')) || {} ;
+        var BidList = JSON.parse(localStorage.getItem('BidList')) || {};
 
         var bidList = BidList[username] || [];
         var message = json_message.messages[0].message.replace(/\s/g, "");
@@ -33,6 +33,13 @@ var native_accessor = {
             if (bidList[0].colorStatus == 0 && !bid_phone_repeat(bidInformation, bid_phone) && bid_phone_equal_people_phone(activities, bidList, bid_phone)) {
                 bid_success(bidInformation, bid_price, bid_phone, bidList);
                 native_accessor.send_sms(json_message.messages[0].phone, "恭喜！你已出价成功！");
+                var bidSignUp = document.getElementById("bidSignUp");
+                if (bidSignUp) {
+                    var scope = angular.element(bidSignUp).scope();
+                    scope.$apply(function () {
+                        scope.transmission();
+                    });
+                }
             }
             bid_sign_up_refresh();
             if (bidList[0].colorStatus == 0 && !bid_phone_equal_people_phone(activities, bidList, bid_phone)) {

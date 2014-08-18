@@ -1,7 +1,4 @@
-
-
-
-bid_sign_up_refresh = function(){
+bid_sign_up_refresh = function () {
     var bidSignUp = document.getElementById("bidSignUp");
     if (bidSignUp) {
         var scopeOne = angular.element(bidSignUp).scope();
@@ -11,7 +8,7 @@ bid_sign_up_refresh = function(){
     }
 };
 
-activity_sign_up_refresh = function(){
+activity_sign_up_refresh = function () {
     var signUp = document.getElementById("signUp");
     if (signUp) {
         var scope = angular.element(signUp).scope();
@@ -21,20 +18,20 @@ activity_sign_up_refresh = function(){
     }
 };
 
-activity_start_status = function(activities){
+activity_start_status = function (activities) {
     return _.find(activities, function (activity) {
         return activity.status == 0
     });
 };
 
-activity_phone_repeat = function(peopleList,person_phone){
+activity_phone_repeat = function (peopleList, person_phone) {
 
     return _.find(peopleList, function (list) {
         return list.personPhone == person_phone
     })
 };
 
-activity_sign_up_success = function(peopleList,activities,person_name,person_phone,json_message){
+activity_sign_up_success = function (peopleList, activities, person_name, person_phone, json_message) {
     var username = localStorage.getItem('username');
     var Activities = JSON.parse(localStorage.getItem('Activities')) || {};
     if (!activity_phone_repeat(peopleList, person_phone)) {
@@ -46,37 +43,75 @@ activity_sign_up_success = function(peopleList,activities,person_name,person_pho
     }
 };
 
-activity_sign_up_repeat = function(peopleList, person_phone,json_message){
+activity_sign_up_repeat = function (peopleList, person_phone, json_message) {
     if (activity_phone_repeat(peopleList, person_phone)) {
         native_accessor.send_sms(json_message.messages[0].phone, "您已报名成功，请勿重复报名");
     }
 };
 
-activity_sign_up_fail = function(activities,json_message){
+activity_sign_up_fail = function (activities, json_message) {
     if (!activity_start_status(activities)) {
         native_accessor.send_sms(json_message.messages[0].phone, "活动尚未开始或已经结束！");
     }
 };
 
-bid_phone_equal_people_phone = function(activities,bidList,bid_phone){
-    return _.find(bid_name_equal_activity_name(activities,bidList).peopleList, function (person_phone) {
+bid_phone_equal_people_phone = function (activities, bidList, bid_phone) {
+    return _.find(bid_name_equal_activity_name(activities, bidList).peopleList, function (person_phone) {
         return person_phone.personPhone == bid_phone
     })
 };
 
-bid_name_equal_activity_name = function(activities,bidList){
-    return _.find(activities,function(activity){return activity.name == bidList[0].activityName})
+bid_name_equal_activity_name = function (activities, bidList) {
+    return _.find(activities, function (activity) {
+        return activity.name == bidList[0].activityName
+    })
 };
 
-bid_phone_repeat = function(bidInformation,bid_phone){
-    return _.find(bidInformation,function(infor){ return infor.bidPhone == bid_phone})
+bid_phone_repeat = function (bidInformation, bid_phone) {
+    return _.find(bidInformation, function (infor) {
+        return infor.bidPhone == bid_phone
+    })
 };
 
-bid_success = function(bidInformation,bid_price,bid_phone,bidList){
+bid_success = function (bidInformation, bid_price, bid_phone, bidList) {
     var username = localStorage.getItem('username');
-    var BidList = JSON.parse(localStorage.getItem('BidList')) || {} ;
+    var Activities = JSON.parse(localStorage.getItem('Activities')) || {};
+    var activities = Activities[username] || [];
+    var activityName = JSON.parse(localStorage.getItem('activityName'));
+    var List = _.find(activities,function(num){return num.name == activityName});
+    var peopleList = List.peopleList ||[];
+    var BidList = JSON.parse(localStorage.getItem('BidList')) || {};
+    var bid = JSON.parse(localStorage.getItem('bid')) || [];
     bidInformation.unshift({'bidPrice': bid_price, 'bidPhone': bid_phone});
+    if (bid.length) {
+        var even = _.find(bid, function (num) {
+            return num.price == bid_price
+        });
+        if (even) {
+            _.find(bid, function (num) {
+                if(num.price == bid_price){
+                    num.count++;
+                }
+            })
+        }
+        if(!even) {
+            var Name = _.find(peopleList, function (list) {
+                return list.personPhone == bid_phone
+            });
+            bid.push({"name": Name.personName, "phone": bid_phone, "price": JSON.parse(bid_price), "count": 1})
+        }
+    }
+    if (!bid.length) {
+        var name = _.find(peopleList, function (list) {
+            return list.personPhone == bid_phone
+        });
+        bid.push({"name": name.personName, "phone": bid_phone, "price": JSON.parse(bid_price), "count": 1})
+    }
+    bid = _.sortBy(bid, function (num) {
+        return num.price
+    });
+    setData('bid', bid);
     bidList[0].bidInformation = bidInformation;
     BidList[username] = bidList;
-    setData('BidList',BidList);
+    setData('BidList', BidList);
 };

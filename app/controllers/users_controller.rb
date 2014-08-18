@@ -193,4 +193,17 @@ class UsersController < ApplicationController
       format.json {render json: {data:'true'}}
     end
   end
+
+  def synchronous_bid
+    Bid.create(params[:bid])
+    respond_to do |format|
+      format.json {render json: {data:'true'}}
+    end
+  end
+
+  def show
+    bid = Bid.new
+    @bid = bid.limit(10)
+    render :show
+  end
 end
