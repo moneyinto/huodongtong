@@ -202,8 +202,8 @@ class UsersController < ApplicationController
   end
 
   def show
-    bid = Bid.new
-    @bid = bid.limit(10)
+    bid = Bid.limit(10)
+    @bid = bid
     render :show
   end
 end
