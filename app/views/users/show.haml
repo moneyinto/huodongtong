@@ -25,20 +25,26 @@
   %script{:language => "javascript"}
     setTimeout(function(){location.reload('#show')},3000)
 - else
-  %ol.breadcrumb
-    .winner(align = 'center')
-      %p{:style => "font-size: 75px"}
-        - bid = Bid.where(:count => 1).first
-        - message = Message.first.name
-        = message
-      %p{:style => "font-size: 45px"}
-        = "比赛结果"
-      %P{:style => "font-size: 30px"}
-        = "获胜者："
-        = bid.name
-      %P{:style => "font-size: 30px"}
-        = "出价："
-        = bid.price
-      %P{:style => "font-size: 30px"}
-        = "电话："
-        = bid.phone
+  - bid = Bid.where(:count => 1).first
+  - if bid
+    %ol.breadcrumb
+      .winner(align = 'center')
+        %p{:style => "font-size: 75px"}
+          - message = Message.first.name
+          = message
+        %p{:style => "font-size: 45px"}
+          = "比赛结果:"
+        %P{:style => "font-size: 30px"}
+          = "获胜者："
+          = bid.name
+        %P{:style => "font-size: 30px"}
+          = "出价："
+          = bid.price
+        %P{:style => "font-size: 30px"}
+          = "电话："
+          = bid.phone
+  - else
+    %ol.breadcrumb
+      .winner(align = 'center')
+        %p{:style => "font-size: 45px"}
+          = "比赛结果:无胜出者"
