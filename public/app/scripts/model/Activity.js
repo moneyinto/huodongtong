@@ -75,3 +75,33 @@ Activity.get_peopleList = function(peopleList,username,num){
         peopleList.push({"username": username,"activityname": num.name,"name": person.personName,"phone": person.personPhone})
     });
 };
+
+Activity.data_arrange = function($http){
+    var username = localStorage.getItem('username');
+    var Activities = JSON.parse(localStorage.getItem('Activities')) || {};
+    var activities = Activities[username] || [];
+    var BidList = JSON.parse(localStorage.getItem('BidList')) || {} ;
+    var bidList = BidList[username] || [];
+    var activity = [];
+    var peopleList = [];
+    var bid_list = [];
+    var bidMessage = [];
+    var priceCount = [];
+    _.map(activities,function(num){
+        activity.unshift({"username": username,"activityname": num.name});
+        Activity.get_peopleList(peopleList,username,num);
+    });
+    _.map(bidList,function(bid){
+        bid_list.unshift({"username": username,"activityname": bid.activityName,"bidname": bid.name,"status": bid.colorStatus});
+        Bidding.get_bidList(bidMessage,username,bid,activities);
+        Bidding.get_price_count(priceCount,bidMessage,bid,username);
+    });
+    bidMessage = _.sortBy(bidMessage, function (num) {
+        return num.price
+    });
+    $http.post('/synchronization.json', {"username":username,"activity":activity,"peopleList": peopleList,"bidList": bid_list,"bidMessage":bidMessage,"priceCount":priceCount}).success(function (back) {
+        if (back.data == 'true') {
+            alert("同步成功!");
+        }
+    });
+};

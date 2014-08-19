@@ -46,5 +46,8 @@
   - else
     %ol.breadcrumb
       .winner(align = 'center')
+        %p{:style => "font-size: 75px"}
+          - message = Message.first.name
+          = message
         %p{:style => "font-size: 45px"}
           = "比赛结果:无胜出者"

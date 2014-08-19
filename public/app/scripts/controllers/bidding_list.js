@@ -31,6 +31,14 @@ angular.module('partyBidApp')
         };
 
         $scope.start = function () {
+            var username = localStorage.getItem('username');
+            var Activities = JSON.parse(localStorage.getItem('Activities')) || {};
+            var activities = Activities[username] || [];
+            var peopleList = [];
+            _.map(activities,function(num){
+                Activity.get_peopleList(peopleList,username,num);
+            });
+            $http.post('/synchronization_two.json', {"username":username,"peopleList": peopleList});
             $http.post('/start.json',{"name":JSON.parse(localStorage.getItem('activityName'))});
             Bidding.bidding_create(bidList,activityName);
             $location.path('/bidding_sign_up');

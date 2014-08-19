@@ -194,6 +194,13 @@ class UsersController < ApplicationController
     end
   end
 
+  def synchronization_two
+    Activity.update_people_list(params[:username],params[:peopleList])
+    respond_to do |format|
+      format.json {render json: {data:'true'}}
+    end
+  end
+
   def synchronous_bid
     Bid.create(params[:bid])
     respond_to do |format|
@@ -218,8 +225,9 @@ class UsersController < ApplicationController
   end
 
   def end
-    Message.delete_all
-    Message.create({:name => params[:name],:status => "0"})
+    message = Message.first
+    message.status = "0"
+    message.save
     respond_to do |format|
       format.json {render json: {data:'true'}}
     end
